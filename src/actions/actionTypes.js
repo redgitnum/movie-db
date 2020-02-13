@@ -1,0 +1,5 @@
+export const FETCH_MOVIES = "FETCH_MOVIES";
+export const RETURN_MOVIES = "RETURN_MOVIES";
+
+export const FETCH_PEOPLE = "FETCH_PEOPLE";
+export const RETURN_PEOPLE = "RETURN_PEOPLE";
