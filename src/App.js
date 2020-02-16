@@ -27,11 +27,9 @@ render() {
       <div className="App">
         <Header />
           <Switch>
-            <Route path="/discover">
-              <Discover />
-            </Route>
+            <Route exact path="/discover/:type/:page" component={Discover}></Route>
             <Route exact path="/movies/:sort/:page" component={Movies}></Route>
-            <Route exact path="/tvshows/:sort" component={Tvshows}></Route>
+            <Route exact path="/tvshows/:sort/:page" component={Tvshows}></Route>
             <Route exact path="/people/:page" component={People}></Route>
             <Route path="/login">
               <LoginPage />

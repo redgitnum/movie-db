@@ -17,24 +17,43 @@ class Movies extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if(
-            prevProps.match.params.page !== this.props.match.params.page) {
+        if(prevProps.match.params.page !== this.props.match.params.page || prevProps.match.params.sort !== this.props.match.params.sort) {
             this.props.fetchMovies(this.props.match.params.sort, this.props.match.params.page);
-            console.log(this.props.movies.entries)
         }
     }
 
+    imageLoaded = (e) => {
+        let placeholder = e.target.parentNode.childNodes[0];
+        let img = e.target;
+        placeholder.style.display = 'none';
+        img.style.display = 'block'
+    }
+
+    getSortName = (e) => {
+        switch(e) {
+            case 'top_rated':
+                return 'Top Rated';
+            case 'upcoming':
+                return 'Upcoming';
+            case 'now_playing':
+                return 'Now Playing';
+            default:
+                return 'Popular'
+        }
+    }
+    
     render() {
         
         return(
             <div className="section">
-                <h1 className="section-title">Popular Movies</h1>
+                <h1 className="section-title">{this.getSortName(this.props.match.params.sort)} Movies</h1>
                 <div className="entries">
                     {this.props.movies.entries && this.props.movies.entries.results.map(entry => {
                         return(
                         <div className="entry" key={entry.id}>
                             <div className="poster">
-                                <img alt="" src={"https://image.tmdb.org/t/p/w342" + entry.poster_path || "https://image.tmdb.org/t/p/w342/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"}></img>
+                                <div className="placeholder"></div>
+                                <img onLoad={this.imageLoaded} alt="" src={"https://image.tmdb.org/t/p/w342" + entry.poster_path || "https://image.tmdb.org/t/p/w342/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"}></img>
                             </div>
                             <div className="info">
                                 <div className="name">

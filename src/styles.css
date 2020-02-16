@@ -19,6 +19,18 @@ body, html {
     background-image: url('./assets/bg-slice4.svg');
 }
 
+a {
+    text-decoration: none;
+    color: var(--primary);
+}
+
+h2 {
+    font-size: 1.6em;
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-gray);
+}
+
 h3 {
     color: var(--primary);
     font-size: 1.4em;
@@ -64,6 +76,63 @@ h3 {
     display: flex;
 }
 
+.navbar li {
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+    text-decoration: none;
+}
+
+.navbar li:first-of-type{
+    margin-left: 50px;
+}
+
+.nav-container{
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    position: relative;
+}
+
+.main-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none; 
+}
+
+.menu {
+    position: relative;
+}
+
+.nav-sort {
+    display: none;
+    position: absolute;
+    background-color: var(--bg-light);
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-decoration: none;
+}
+
+.nav-container:hover .menu .nav-sort{
+    display: block;
+}
+
+.nav-sort *{
+    text-decoration: none;
+    color: var(--secondary);
+}
+
+.nav-sort p{
+    margin: 0;
+    padding: 5px 15px 10px 10px;
+}
+
+.nav-sort p:hover{
+    color: var(--primary);
+    background: var(--bg-dark);
+}
+
 .nav-text {
     margin-top: 5px;
     font-size: 1.4em;
@@ -84,22 +153,6 @@ h3 {
     color: var(--secondary);
     font-size: 1em;
     font-style: italic;
-}
-
-.list-item {
-    display: flex;
-    flex-direction: column;
-    margin-right: 50px;
-    text-decoration: none;
-}
-
-.list-item:first-of-type{
-    margin-left: 50px;
-}
-
-li {
-    display: flex;
-    flex-direction: column;
 }
 
 .login {
@@ -165,10 +218,34 @@ li {
     flex:75%;
 }
 
+.placeholder {
+    margin: 50% auto;
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--bg-light);
+    border-top: 5px solid var(--secondary);
+    border-radius: 50%;
+    animation: loader 1s infinite linear;
+}
+
+.mini {
+    width: 10px;
+    height: 10px;
+}
+@keyframes loader {
+    from{
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .profile-picture img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: none;
 }
 
 .known-for {
@@ -183,6 +260,12 @@ li {
 
 .known-for > div:hover .tooltip{
     display: flex;
+}
+
+.known-for div img{
+    width: 100%;
+    height: 95px;
+    display: none;
 }
 
 .tooltip {
@@ -213,10 +296,7 @@ li {
     color: var(--secondary)
 }
 
-.known-for div img{
-    width: 97%;
-    height: 100%;
-}
+
 
 .page-nav {
     display: flex;
@@ -279,6 +359,7 @@ li {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    display: none;
 }
 
 .entry .info .name {
@@ -306,6 +387,80 @@ li {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 12; 
 }
+
+.login-form {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    max-width: 600px;
+    background: var(--bg-light);
+    padding: 20px 0;
+    border-radius: 45px;
+    border: 2px solid var(--secondary);
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin-right: 20px;
+}
+
+.inputs label {
+    font-size: 1.2em;
+    font-weight: 900;
+    color: var(--text-gray);
+}
+
+.inputs input {
+    background: var(--secondary);
+    border: none;
+    border-radius: 20px;
+    margin: 3px 6px;
+    padding: 8px 10px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+button[type=submit] {
+    background: var(--secondary);
+    padding: 10px;
+    border: none;
+    align-self: center;
+    width: 150px;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: white
+}
+
+button[type=submit]:hover {
+    background: var(--primary);
+    color: var(--bg-dark);
+    cursor: pointer;
+}
+
+.benefits {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    width: 300px;
+    background: var(--bg-light);
+    padding: 25px;
+    border-radius: 45px;
+    border: 2px solid var(--secondary);
+}
+
+.benefits p {
+    text-align: center;
+    margin: 0;
+    padding: 3px 0;
+    color: var(--text-gray);
+    text-decoration: underline;
+}
+
 
 .footer {
     height: 30px;

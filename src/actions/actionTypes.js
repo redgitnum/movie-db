@@ -1,5 +1,11 @@
 export const FETCH_MOVIES = "FETCH_MOVIES";
 export const RETURN_MOVIES = "RETURN_MOVIES";
 
+export const FETCH_TVSHOWS = "FETCH_TVSHOWS";
+export const RETURN_TVSHOWS = "RETURN_TVSHOWS";
+
 export const FETCH_PEOPLE = "FETCH_PEOPLE";
 export const RETURN_PEOPLE = "RETURN_PEOPLE";
+
+export const FETCH_DISCOVER = "FETCH_DISCOVER";
+export const RETURN_DISCOVER = "RETURN_DISCOVER";

@@ -24,8 +24,14 @@ class People extends React.Component {
         }
     }
 
+    imageLoaded = (e) => {
+        let placeholder = e.target.parentNode.childNodes[0];
+        let img = e.target;
+        placeholder.style.display = 'none';
+        img.style.display = 'block'
+    }
+
     render() {
-        console.log(this.props.people.entries)
         return(
             <div className="section">
                 <h1 className="section-title">Popular People</h1>
@@ -34,14 +40,16 @@ class People extends React.Component {
                         return(
                         <div className="person" key={entry.id}>
                             <div className="profile-picture">
-                                <img src={entry.profile_path ? "https://image.tmdb.org/t/p/w154" + entry.profile_path : "https://image.tmdb.org/t/p/w154/jHOrNJNM03Lsjdw7nsw7TlqBOhd.jpg"} alt=""></img>
+                                <div className="placeholder"></div>
+                                <img onLoad={this.imageLoaded} src={entry.profile_path ? "https://image.tmdb.org/t/p/w154" + entry.profile_path : "https://image.tmdb.org/t/p/w154/jHOrNJNM03Lsjdw7nsw7TlqBOhd.jpg"} alt=""></img>
                             </div>
                             <div className="known-for">
                                 {entry.known_for.map((movie, index) => {
                                     if(index <4){
                                         return(
                                             <div key={movie.id}>
-                                                <img src={movie.poster_path ? "https://image.tmdb.org/t/p/w154" + movie.poster_path : "https://image.tmdb.org/t/p/w154/jHOrNJNM03Lsjdw7nsw7TlqBOhd.jpg"} alt=""></img>
+                                                <div className="placeholder mini"></div>
+                                                <img onLoad={this.imageLoaded} src={movie.poster_path ? "https://image.tmdb.org/t/p/w154" + movie.poster_path : "https://image.tmdb.org/t/p/w154/jHOrNJNM03Lsjdw7nsw7TlqBOhd.jpg"} alt=""></img>
                                                 <div className="tooltip">
                                                     <div className="tooltip-title">
                                                             {movie.original_name || movie.original_title}
