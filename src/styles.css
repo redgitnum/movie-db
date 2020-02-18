@@ -24,6 +24,10 @@ a {
     color: var(--primary);
 }
 
+datalist {
+    display: block;
+}
+
 h2 {
     font-size: 1.6em;
     text-align: center;

@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { fetchDiscover } from '../../actions';
+import { fetchDiscover, fetchKeywords } from '../../actions';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = {
-  fetchDiscover  
+  fetchDiscover,
+  fetchKeywords
 };
 
 
@@ -16,7 +17,8 @@ class Discover extends React.Component {
 
         this.state = {
             year: '',
-            sort: 'popularity.desc'
+            sort: 'popularity.desc',
+            keywords: []
         }
     }
 
@@ -29,10 +31,10 @@ class Discover extends React.Component {
             prevProps.match.params.page !== this.props.match.params.page || 
             prevProps.match.params.type !== this.props.match.params.type ||
             prevState.year !== this.state.year ||
-            prevState.sort !== this.state.sort
+            prevState.sort !== this.state.sort ||
+            prevState.keywords !== this.state.keywords
         ) {
-            console.log(this.state.sort)
-            this.props.fetchDiscover(this.props.match.params.type, this.props.match.params.page, this.state.year, this.state.sort, 'genres', 'keywords');
+            this.props.fetchDiscover(this.props.match.params.type, this.props.match.params.page, this.state.year, this.state.sort, 'genres', this.state.keywords);
         }
     }
 
@@ -57,8 +59,69 @@ class Discover extends React.Component {
             [e.target.name]: e.target.value
         })
     }
+
+    addOption = (e) => {
+        if(e.keyCode === 13 || e.target.name === 'keywords'){  
+            let datalist = document.getElementById('options');
+            if(datalist){
+                for(let i = 0; i < datalist.options.length; i++){
+                    if(e.target.value === datalist.options[i].value){
+                        let container = document.querySelector('.selected-keywords');
+    
+                        let checkExist = () => {
+                            let exist = false;
+                            for(let x = 0; x< container.children.length;x++){
+                                let text = container.children[x].childNodes[0].nodeValue;
+                                if(e.target.value === text){
+                                    exist = true;
+                                    break
+                                }
+                            }
+                            return exist
+                        }
+                        if(!checkExist()){
+                            let element = document.createElement('LI');
+                            let text = document.createTextNode(e.target.value)
+                            element.appendChild(text);
+                            container.appendChild(element);
+                            this.setState({
+                                keywords: [...this.state.keywords, datalist[e.target.options.selectedIndex].attributes[0].nodeValue], 
+                            })
+                            if(e.target.name !== 'keywords'){
+                                e.target.value = ''
+                            } else {
+                                let box = document.getElementById('keywords-input');
+                                box.value = '';
+                                this.props.fetchKeywords('')
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+            }
+            
+        }  
+    }
+
+    getKeywords = (e) => {
+        this.props.fetchKeywords(e.target.value)
+    }
+
+    populateKeywords = () => {
+        let result = []
+        if(this.props.keywords.entries.results){
+                this.props.keywords.entries.results.map(item => {
+                    return result.push(<option key={item.id} name={item.id} value={item.name}>{item.name}</option>)
+                })
+        }
+        return result;
+    }
     
     render() {
+        console.log(this.state.keywords)
         return(
             <div className="section">
                 <h1 className="section-title">Discover {this.getSortName(this.props.match.params.type)}</h1>
@@ -76,6 +139,16 @@ class Discover extends React.Component {
                         <option value="first_air_date.desc">Release Date Descending</option>
                         <option value="first_air_date.asc">Release Date Ascending</option>
                     </select>
+                        <input onChange={this.getKeywords} onKeyDown={this.addOption} id="keywords-input"></input>
+                        {!this.props.keywords.entries.total_results 
+                            ?   null 
+                            :   <select id="options" size={this.props.keywords.entries.results.length} name="keywords" onChange={this.addOption}>
+                                    {this.populateKeywords()}
+                                </select>
+                        }
+                        <div className="selected-keywords">
+
+                        </div>
                 </div>
                 <div className="entries">
                     {this.props.discover.entries && this.props.discover.entries.results.map(entry => {
