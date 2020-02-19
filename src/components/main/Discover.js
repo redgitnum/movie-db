@@ -3,6 +3,7 @@ import React from 'react';
 import { fetchDiscover, fetchKeywords } from '../../actions';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
+import { genres } from '../../constants/genres'
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = {
@@ -18,7 +19,8 @@ class Discover extends React.Component {
         this.state = {
             year: '',
             sort: 'popularity.desc',
-            keywords: []
+            keywords: [],
+            genres: []
         }
     }
 
@@ -32,9 +34,10 @@ class Discover extends React.Component {
             prevProps.match.params.type !== this.props.match.params.type ||
             prevState.year !== this.state.year ||
             prevState.sort !== this.state.sort ||
-            prevState.keywords !== this.state.keywords
+            prevState.keywords !== this.state.keywords ||
+            prevState.genres !== this.state.genres
         ) {
-            this.props.fetchDiscover(this.props.match.params.type, this.props.match.params.page, this.state.year, this.state.sort, 'genres', this.state.keywords);
+            this.props.fetchDiscover(this.props.match.params.type, this.props.match.params.page, this.state.year, this.state.sort, this.state.genres, this.state.keywords);
         }
     }
 
@@ -84,30 +87,42 @@ class Discover extends React.Component {
                             let text = document.createTextNode(e.target.value)
                             element.appendChild(text);
                             container.appendChild(element);
-                            this.setState({
-                                keywords: [...this.state.keywords, datalist[e.target.options.selectedIndex].attributes[0].nodeValue], 
-                            })
-                            if(e.target.name !== 'keywords'){
-                                e.target.value = ''
+                            if(e.target.nodeName === 'INPUT' && datalist[0]) {
+                                this.setState({
+                                    keywords: [
+                                        ...this.state.keywords,
+                                        [datalist[0].attributes[0].nodeValue, datalist[0].attributes[1].nodeValue ]
+                                    ], 
+                                })
                             } else {
-                                let box = document.getElementById('keywords-input');
-                                box.value = '';
-                                this.props.fetchKeywords('')
-                                
+                                this.setState({
+                                    keywords: [
+                                        ...this.state.keywords,
+                                        [datalist[e.target.options.selectedIndex].attributes[0].nodeValue, datalist[e.target.options.selectedIndex].attributes[1].nodeValue]
+                                    ], 
+                                })
                             }
-                            
+
+                            let box = document.getElementById('keywords-input');
+                            box.value = '';
+                            this.props.fetchKeywords('')
+                                
                         }
-                        
                     }
-                    
                 }
             }
-            
         }  
     }
 
-    getKeywords = (e) => {
-        this.props.fetchKeywords(e.target.value)
+    addGenre = (e) => {
+        let result = genres.find(item => {
+            return item.name === e.target.value
+        })
+        if(!this.state.genres.find(item => (item.id === result.id))){
+            this.setState({
+                genres: [...this.state.genres, result]
+            })
+        }
     }
 
     populateKeywords = () => {
@@ -119,9 +134,17 @@ class Discover extends React.Component {
         }
         return result;
     }
+
+    populateGenres = () => {
+        let result = []
+        genres.map((item, index) => {
+            return result.push(<option key={item.id} name={item.id} value={item.name}>{item.name}</option>)
+        })
+        return result
+    }
     
     render() {
-        console.log(this.state.keywords)
+        console.log(this.state.genres)
         return(
             <div className="section">
                 <h1 className="section-title">Discover {this.getSortName(this.props.match.params.type)}</h1>
@@ -139,7 +162,7 @@ class Discover extends React.Component {
                         <option value="first_air_date.desc">Release Date Descending</option>
                         <option value="first_air_date.asc">Release Date Ascending</option>
                     </select>
-                        <input onChange={this.getKeywords} onKeyDown={this.addOption} id="keywords-input"></input>
+                        <input onChange={(e) => this.props.fetchKeywords(e.target.value)} onKeyDown={this.addOption} id="keywords-input"></input>
                         {!this.props.keywords.entries.total_results 
                             ?   null 
                             :   <select id="options" size={this.props.keywords.entries.results.length} name="keywords" onChange={this.addOption}>
@@ -149,6 +172,9 @@ class Discover extends React.Component {
                         <div className="selected-keywords">
 
                         </div>
+                        <select onChange={this.addGenre}>
+                            {this.populateGenres()}
+                        </select>
                 </div>
                 <div className="entries">
                     {this.props.discover.entries && this.props.discover.entries.results.map(entry => {
