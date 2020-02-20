@@ -12,6 +12,10 @@ const mapDispatchToProps = {
 };
 
 
+
+
+
+
 class Discover extends React.Component {
     constructor(props) {
         super(props)
@@ -34,8 +38,8 @@ class Discover extends React.Component {
             prevProps.match.params.type !== this.props.match.params.type ||
             prevState.year !== this.state.year ||
             prevState.sort !== this.state.sort ||
-            prevState.keywords !== this.state.keywords ||
-            prevState.genres !== this.state.genres
+            prevState.keywords.length !== this.state.keywords.length ||
+            prevState.genres.length !== this.state.genres.length
         ) {
             this.props.fetchDiscover(this.props.match.params.type, this.props.match.params.page, this.state.year, this.state.sort, this.state.genres, this.state.keywords);
         }
@@ -63,66 +67,52 @@ class Discover extends React.Component {
         })
     }
 
-    addOption = (e) => {
-        if(e.keyCode === 13 || e.target.name === 'keywords'){  
-            let datalist = document.getElementById('options');
-            if(datalist){
-                for(let i = 0; i < datalist.options.length; i++){
-                    if(e.target.value === datalist.options[i].value){
-                        let container = document.querySelector('.selected-keywords');
-    
-                        let checkExist = () => {
-                            let exist = false;
-                            for(let x = 0; x< container.children.length;x++){
-                                let text = container.children[x].childNodes[0].nodeValue;
-                                if(e.target.value === text){
-                                    exist = true;
-                                    break
-                                }
-                            }
-                            return exist
-                        }
-                        if(!checkExist()){
-                            let element = document.createElement('LI');
-                            let text = document.createTextNode(e.target.value)
-                            element.appendChild(text);
-                            container.appendChild(element);
-                            if(e.target.nodeName === 'INPUT' && datalist[0]) {
-                                this.setState({
-                                    keywords: [
-                                        ...this.state.keywords,
-                                        [datalist[0].attributes[0].nodeValue, datalist[0].attributes[1].nodeValue ]
-                                    ], 
-                                })
-                            } else {
-                                this.setState({
-                                    keywords: [
-                                        ...this.state.keywords,
-                                        [datalist[e.target.options.selectedIndex].attributes[0].nodeValue, datalist[e.target.options.selectedIndex].attributes[1].nodeValue]
-                                    ], 
-                                })
-                            }
-
-                            let box = document.getElementById('keywords-input');
-                            box.value = '';
-                            this.props.fetchKeywords('')
-                                
-                        }
-                    }
+    addKeyword = (e) => {
+        if(e.keyCode === 13 || e.target.name === 'keywords') {
+            if(this.props.keywords.entries.results) {
+                let result = this.props.keywords.entries.results.find(item => {
+                    return (item.name === e.target.value && !this.state.keywords.find(item => item.name === e.target.value))
+                })
+                if(result) {
+                    this.setState({
+                        keywords: [...this.state.keywords, result]
+                    })
+                    document.getElementById('keywords-input').value = '';
+                    this.props.fetchKeywords('')
                 }
             }
-        }  
+            
+        }
     }
 
     addGenre = (e) => {
-        let result = genres.find(item => {
-            return item.name === e.target.value
-        })
-        if(!this.state.genres.find(item => (item.id === result.id))){
-            this.setState({
-                genres: [...this.state.genres, result]
+        if(e.target.value) {
+            let result = genres.find(item => {
+                return item.name === e.target.value
             })
+            if(!this.state.genres.find(item => (item.id === result.id))){
+                this.setState({
+                    genres: [...this.state.genres, result]
+                })
+            }
+            let list = document.getElementById('genres-list');
+            list[0].selected = true;
         }
+        
+    }
+
+    removeGenre = (e) => {
+        let result = this.state.genres.filter(item => (item.id !== Number(e.target.value)))
+        this.setState({
+            genres: [...result]
+        })
+    }
+
+    removeKeyword = (e) => {
+        let result = this.state.keywords.filter(item => (item.id !== Number(e.target.value)))
+        this.setState({
+            keywords: [...result]
+        })
     }
 
     populateKeywords = () => {
@@ -142,39 +132,71 @@ class Discover extends React.Component {
         })
         return result
     }
+
+    populateYears = () => {
+        let result = []
+        for(let i = 2020; i > 1919; i--) {
+            result.push(<option value={i}>{i}</option>)
+        }
+        return result
+    }
+
+    selectedGenres = (list) => {
+        return list.map(item => <option onClick={this.removeGenre} key={item.id} value={item.id}>{item.name}</option>)
+    }
+    
+    selectedKeywords = (list) => {
+        return list.map(item => <option onClick={this.removeKeyword} key={item.id} value={item.id}>{item.name}</option>)
+    }
+    
     
     render() {
-        console.log(this.state.genres)
         return(
             <div className="section">
                 <h1 className="section-title">Discover {this.getSortName(this.props.match.params.type)}</h1>
                 <div className="filters">
-                    <select name="year" onChange={this.filterOptions}>
-                        <option value="">none</option>
-                        <option value="2012">2012</option>
-                        <option value="2013">2013</option>
-                    </select>
-                    <select name="sort" onChange={this.filterOptions}>
-                        <option value="popularity.desc">Popularity Descending</option>
-                        <option value="popularity.asc">Popularity Ascending</option>
-                        <option value="vote_average.desc">Rating Descending</option>
-                        <option value="vote_average.asc">Rating Ascending</option>
-                        <option value="first_air_date.desc">Release Date Descending</option>
-                        <option value="first_air_date.asc">Release Date Ascending</option>
-                    </select>
-                        <input onChange={(e) => this.props.fetchKeywords(e.target.value)} onKeyDown={this.addOption} id="keywords-input"></input>
+                    <div className="filter-item">
+                        <label>Year:</label>
+                        <select name="year" onChange={this.filterOptions}>
+                            <option value="">none</option>
+                            {this.populateYears()}
+                        </select>
+                    </div>
+                    <div className="filter-item">
+                        <label>Sort by:</label>
+                        <select name="sort" onChange={this.filterOptions}>
+                            <option value="popularity.desc">Popularity Descending</option>
+                            <option value="popularity.asc">Popularity Ascending</option>
+                            <option value="vote_average.desc">Rating Descending</option>
+                            <option value="vote_average.asc">Rating Ascending</option>
+                            <option value="first_air_date.desc">Release Date Descending</option>
+                            <option value="first_air_date.asc">Release Date Ascending</option>
+                        </select>
+                    </div>
+                    <div className="filter-item">
+                        <label>Genres:</label>
+                        <select onChange={this.addGenre} id='genres-list'>
+                            <option></option>
+                            {this.populateGenres()}
+                        </select>
+                        <div className="selected-genres">
+                            {this.selectedGenres(this.state.genres)}
+                        </div>
+                    </div>
+                    <div className="filter-item">
+                        <label>Keywords:</label>
+                        <input onChange={(e) => this.props.fetchKeywords(e.target.value)} onKeyDown={this.addKeyword} id='keywords-input'></input>
                         {!this.props.keywords.entries.total_results 
                             ?   null 
-                            :   <select id="options" size={this.props.keywords.entries.results.length} name="keywords" onChange={this.addOption}>
+                            :   <select id="options" size={this.props.keywords.entries.results.length} name="keywords" onChange={this.addKeyword}>
                                     {this.populateKeywords()}
                                 </select>
                         }
                         <div className="selected-keywords">
-
+                            {this.selectedKeywords(this.state.keywords)}
                         </div>
-                        <select onChange={this.addGenre}>
-                            {this.populateGenres()}
-                        </select>
+                    </div>
+                    
                 </div>
                 <div className="entries">
                     {this.props.discover.entries && this.props.discover.entries.results.map(entry => {
