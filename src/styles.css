@@ -19,10 +19,10 @@ body, html {
     background-image: url('./assets/bg-slice4.svg');
 }
 
-a {
+/* a {
     text-decoration: none;
     color: var(--primary);
-}
+} */
 
 h2 {
     font-size: 1.6em;
@@ -405,6 +405,7 @@ h3 {
 
 .filter-item {
     display: flex;
+    position: relative;
     flex-direction: column;
     min-width: 100px;
     margin: 0 10px;
@@ -421,7 +422,7 @@ h3 {
     width: 100%;
     font-size: 1.1em;
     color: var(--text-gray);
-    padding: 4px 15px 4px 4px;
+    padding: 5px 10px;
     background-color: var(--bg-light);
     background-image:   
             linear-gradient(45deg, transparent 50%, var(--bg-light) 50%),
@@ -431,6 +432,7 @@ h3 {
     background-position: right center;
     background-repeat: no-repeat;
     border: none;
+    border-radius: 0.7em;
     -moz-appearance: none;
     -webkit-appearance: none;
 }
@@ -441,10 +443,11 @@ h3 {
     height: 1.4em;
     font-size: 1.1em;
     color: var(--text-gray);
-    padding: 4px 15px 4px 4px;
+    padding: 5px 10px;
     background-color: var(--bg-light);
     border: none;
-
+    border-radius: 0.7em;
+    position: relative;
 }
 
 .filter-item select option{
@@ -453,6 +456,67 @@ h3 {
     margin: 0;
     padding: 4px 15px 4px 4px;
 }
+
+.filter-item .opt-list {
+    position: absolute;
+    z-index: 2;
+    top: 65px;
+    left: 0;
+}
+
+.filter-item .opt {
+    color: var(--bg-dark);
+    cursor: pointer;
+    border: 1px solid white;
+    margin: 2px 0;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.opt:hover {
+    background: white !important;
+}
+
+.selected-keywords,
+.selected-genres {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.selected-keywords div,
+.selected-genres div{
+    position: relative;
+    background: var(--bg-light);
+    border-radius: 0.7em;
+    padding: 4px 36px 4px 12px;
+    margin: 3px;
+    user-select: none;
+}
+
+.selected-keywords div:hover,
+.selected-genres div:hover{
+    background: rgb(15, 73, 68);
+}
+
+.selected-keywords div .delete-icon,
+.selected-genres div .delete-icon{
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    background-image:   linear-gradient(45deg, transparent 45%, white 45%, white 55%,  transparent 55%),
+                        linear-gradient(-45deg, transparent 45%, white 45%, white 55%, transparent 55%);
+    width: 16px;
+    height: 16px;
+}
+
+.selected-keywords div .delete-icon:hover,
+.selected-genres div .delete-icon:hover{
+    transform: scale(1.2);
+}
+
 
 .inputs {
     display: flex;
