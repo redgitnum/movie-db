@@ -2,7 +2,7 @@ import {
     RETURN_TVSHOWS,
 } from '../actions/actionTypes'
 
-export default function(state = 1, action){
+export default function(state = 0, action){
     switch(action.type){
         case RETURN_TVSHOWS:
             return {

@@ -13,14 +13,14 @@ class Navigation extends React.Component {
                 <ul className="navbar">
                     <li>
                         <div className="nav-container">
-                            <Link to="/discover/movie/1" className="nav-container">
+                            <Link to="/discover/movie/1" className="main-link">
                                 <img alt="ufo" src={ufo}></img>
                                 <div className="nav-text">DISCOVER</div>
                             </Link>
                             <div className="menu">  
                                 <div className="nav-sort">
-                                    <Link to="/discover/movie/1"><p>MOVIES</p></Link>
-                                    <Link to="/discover/tv/1"><p>TV SHOWS</p></Link>
+                                    <Link to="/discover/movie/1">MOVIES</Link>
+                                    <Link to="/discover/tv/1">TV SHOWS</Link>
                                 </div>
                             </div>
                         </div>
@@ -34,10 +34,10 @@ class Navigation extends React.Component {
                             </Link>
                             <div className="menu">  
                                 <div className="nav-sort">
-                                    <Link to="/movies/popular/1"><p>POPULAR</p></Link>
-                                    <Link to="/movies/top_rated/1"><p>TOP RATED</p></Link>
-                                    <Link to="/movies/upcoming/1"><p>UPCOMING</p></Link>
-                                    <Link to="/movies/now_playing/1"><p>NOW PLAYING</p></Link>
+                                    <Link to="/movies/popular/1">POPULAR</Link>
+                                    <Link to="/movies/top_rated/1">TOP RATED</Link>
+                                    <Link to="/movies/upcoming/1">UPCOMING</Link>
+                                    <Link to="/movies/now_playing/1">NOW PLAYING</Link>
                                 </div>
                             </div>
                         </div>
@@ -51,20 +51,22 @@ class Navigation extends React.Component {
                             </Link>
                             <div className="menu">  
                                 <div className="nav-sort">
-                                    <Link to="/tvshows/popular/1"><p>POPULAR</p></Link>
-                                    <Link to="/tvshows/top_rated/1"><p>TOP RATED</p></Link>
-                                    <Link to="/tvshows/on_the_air/1"><p>ON THE AIR</p></Link>
-                                    <Link to="/tvshows/airing_today/1"><p>AIRING TODAY</p></Link>
+                                    <Link to="/tvshows/popular/1">POPULAR</Link>
+                                    <Link to="/tvshows/top_rated/1">TOP RATED</Link>
+                                    <Link to="/tvshows/on_the_air/1">ON THE AIR</Link>
+                                    <Link to="/tvshows/airing_today/1">AIRING TODAY</Link>
                                 </div>
                             </div>
                         </div>
                     </li>
 
                     <li>
-                        <Link to="/people/1" className="nav-container">
-                            <img alt="star" src={star}></img>
-                            <div className="nav-text">PEOPLE</div>
-                        </Link>
+                        <div className="nav-container">
+                            <Link to="/people/1" className="main-link">
+                                <img alt="star" src={star}></img>
+                                <div className="nav-text">PEOPLE</div>
+                            </Link>
+                        </div>
                     </li>
 
                 </ul>

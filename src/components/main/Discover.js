@@ -132,16 +132,6 @@ class Discover extends React.Component {
         })
     }
 
-    populateKeywords = () => {
-        let result = []
-        if(this.props.keywords.entries.results){
-                this.props.keywords.entries.results.map(item => {
-                    return result.push(<option key={item.id} name={item.id} value={item.name}>{item.name}</option>)
-                })
-        }
-        return result;
-    }
-
     populateGenres = () => {
         let result = []
         genres.map((item, index) => {
@@ -258,7 +248,7 @@ class Discover extends React.Component {
                                     key={item.id} 
                                     onClick={this.addKeyword} 
                                     value={item.name}
-                                    style={{background: this.state.keywordIndex === index ? 'white' : 'var(--secondary)'}}
+                                    style={{background: this.state.keywordIndex === index ? 'var(--secondary)' : 'var(--bg-light)'}}
                                 >
                                     {item.name}
                                 </div>

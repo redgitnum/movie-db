@@ -7,7 +7,7 @@ class Header extends React.Component {
     render() {
         return(
             <div className="header">
-                <Link to="/" className="title">
+                <Link to="/" className="header-title">
                     <h1 className="logo">FLICKS DB</h1>
                     <p className="under-title">Find your favorite movie, 
                         tv show or movie star 
