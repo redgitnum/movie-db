@@ -10,11 +10,11 @@ class SignupPage extends React.Component {
                 <h1 className="section-title">Sign up</h1>
                 <form className="login-form">
                     <div className="inputs">
-                        <label for="username">username: 
+                        <label htmlFor="username">username: 
                         <input type="text" name="username"></input></label>
-                        <label for="password">password: 
+                        <label htmlFor="password">password: 
                         <input type="password" name="password"></input></label>
-                        <label for="password">confirm password: 
+                        <label htmlFor="password">confirm password: 
                         <input type="password" name="confirm-password"></input></label>
                     </div>
                     <button type="submit">SIGN UP</button>

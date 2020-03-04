@@ -3,7 +3,9 @@ import {
     FETCH_MOVIES,
     FETCH_TVSHOWS,
     FETCH_DISCOVER,
-    FETCH_KEYWORDS
+    FETCH_KEYWORDS,
+    FETCH_SEARCH,
+    FETCH_DETAILS
 } from './actionTypes';
 
 export function fetchMovies(sort, page) {
@@ -45,5 +47,19 @@ export function fetchKeywords(input) {
     return {
         type: FETCH_KEYWORDS,
         payload: input
+    }
+}
+
+export function fetchSearch(query) {
+    return {
+        type: FETCH_SEARCH,
+        payload: query
+    }
+}
+
+export function fetchDetails(id, category) {
+    return {
+        type: FETCH_DETAILS,
+        payload: {id, category}
     }
 }

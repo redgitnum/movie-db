@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { fetchMovies } from '../../../actions';
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 
@@ -19,12 +20,12 @@ class InTheaters extends React.Component {
         return this.props.movies.entries.results.map((item, index) => {
             if(index < 3){
                 return(
-                    <div key={item.id}>
+                    <Link to={`/details/movie/${item.id}`} key={item.id}>
                         <img alt='' src={`https://image.tmdb.org/t/p/w1000_and_h563_face${item.backdrop_path}`}></img>
                         <div className="title">
                             {item.title}
                         </div>
-                    </div>
+                    </Link>
                 )
             }
             return null

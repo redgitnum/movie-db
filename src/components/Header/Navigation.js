@@ -5,9 +5,19 @@ import ufo from '../../assets/ufo-icon.svg';
 import camera from '../../assets/camera-icon.svg';
 
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router"
 
 class Navigation extends React.Component {
+
+    redirectSearch = (e) => {
+        if(e.keyCode === 13){
+            this.props.history.replace(`/search/${e.target.value.trim().split(/\s+/).join('%20')}`)
+            e.target.value = ''
+        }
+
+    }
     render() {
+
         return(
             <div className="nav">
                 <ul className="navbar">
@@ -71,7 +81,7 @@ class Navigation extends React.Component {
 
                 </ul>
                 <div className="searchbar">
-                    <input type="text" placeholder="SEARCH MOVIES, TV SHOWS OR PEOPLE"></input>
+                    <input onKeyDown={this.redirectSearch} type="text" placeholder="SEARCH MOVIES, TV SHOWS OR PEOPLE"></input>
                 </div>
             </div>
         )
@@ -79,4 +89,4 @@ class Navigation extends React.Component {
 }
 
 
-export default Navigation
+export default withRouter(Navigation)

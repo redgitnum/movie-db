@@ -19,10 +19,10 @@ body, html {
     background-image: url('./assets/bg-slice4.svg');
 }
 
-/* a {
+a {
     text-decoration: none;
-    color: var(--primary);
-} */
+    color: white;
+}
 
 h2 {
     font-size: 1.6em;
@@ -38,41 +38,25 @@ h3 {
 .header {
     display: flex;
     background: var(--bg-light);
-    padding: 20px;
-    height: auto;
-}
-
-.header-title {
-    flex: 0 0 250px;
-    text-decoration: none;
+    padding: 10px 20px;
 }
 
 .logo {
-    font-size: 2em;
-    margin: 0;
-    padding: 0;
-    color: var(--primary)
-}
-
-.under-title {
-    font-weight: 400;
-    font-size: 1em;
-    font-style: italic;
-    margin: 0;
-    padding: 0;
-    color: var(--text-gray)
+    flex: 1;
+    text-align: right;
+    margin-right: 10px;
 }
 .nav {
-    flex: 7;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;    
 }
 
 .navbar {
     list-style-type: none;
     padding: 0;
     display: flex;
+    align-self: center;
 }
 
 .navbar li {
@@ -142,8 +126,8 @@ h3 {
 }
 
 .searchbar {
+    align-self: center;
     margin: auto 0;
-    width: 100%;
 }
 
 .searchbar input {
@@ -156,18 +140,59 @@ h3 {
     font-size: 0.9em;
 }
 
+.search-query {
+    font-size: 1.2em;
+    margin: 10px 0 20px;
+    color: var(--secondary);
+    text-align: center;
+}
+
+.search-results .category {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.search-results .category button{
+    margin: 0 2px;
+    padding: 8px 20px;
+    font-size: 1.6em;
+    color: var(--secondary);
+    border: 1px solid var(--text-gray);
+    background: var(--bg-light);
+}
+
+.search-results .category button:first-of-type{
+    border-radius: 50px 0 0 50px;
+    padding-left: 30px;
+}
+
+.search-results .category button:last-of-type{
+    border-radius: 0 50px 50px 0;
+    padding-right: 30px;
+}
+
+.search-results .category button:hover{
+    color: var(--primary);
+    cursor: pointer;
+}
+
+.search-results .category button.active{
+    color: black;
+    background: var(--primary);
+}
+
 .login {
-    flex: 1;
+    flex: 1 1;
     align-self: center;
-    margin-right: 50px;
     line-height: 2em;
 }
 
-.login * {
+.login .links * {
+    width: 150px;
     text-align: center;
-    padding: 0;
     margin: 0;
-    font-size: 1em;
+    padding: 0;
     text-decoration: none;
 }
 
@@ -222,21 +247,25 @@ h3 {
 
 .grid .thumbnails {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 2fr 1fr;
 }
 
-.grid .thumbnails div:first-of-type{
+.grid .thumbnails a {
+    overflow: hidden;
+}
+
+.grid .thumbnails a:first-of-type{
     grid-column: span 2;
     position: relative;
 }
 
-.grid .thumbnails div:nth-of-type(1n+2){
+.grid .thumbnails a:nth-of-type(1n+2){
     grid-column: span 1;
     position: relative;
 }
 
-.grid .thumbnails div .title{
+.grid .thumbnails a .title{
     position: absolute;
     bottom: 3px;
     left: 3px;
@@ -247,22 +276,27 @@ h3 {
     padding: 0 5px;
 }
 
-.grid .thumbnails div:nth-of-type(1) .title{
+.grid .thumbnails a:nth-of-type(1) .title{
     font-size: 1.6em;
 }
 
-.grid .thumbnails div:nth-of-type(1n+2) .title{
+.grid .thumbnails a:nth-of-type(1n+2) .title{
     font-size: 0.8em;
 }
 
-.grid .thumbnails div img{
+.grid .thumbnails a img{
+    transition: 0.3s;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+.grid .thumbnails a:hover img{
+    transform: scale(1.2);
+    filter: brightness(50%);
+}
 
-.grid .thumbnails div:first-of-type {
+.grid .thumbnails a:first-of-type {
     grid-column: span 2;
 }
 
@@ -288,6 +322,17 @@ h3 {
     flex-wrap: wrap;
 }
 
+.person > a:first-of-type{
+    flex: 75%;
+    object-fit: cover;
+    text-decoration: none;
+}
+
+.person > a:last-of-type{
+    text-decoration: none;
+    color: var(--text-gray);
+}
+
 .person .name {
     font-size: 1.3em;
     font-weight: 600;
@@ -296,7 +341,8 @@ h3 {
 }
 
 .profile-picture {
-    flex:75%;
+    width: 100%;
+    height: 100%;
 }
 
 .placeholder {
@@ -335,15 +381,15 @@ h3 {
     flex-direction: column;  
 }
 
-.known-for > div{
+.known-for > a{
     position: relative;
 }
 
-.known-for > div:hover .tooltip{
+.known-for > a:hover .tooltip{
     display: flex;
 }
 
-.known-for div img{
+.known-for a img{
     width: 100%;
     height: 95px;
     display: none;

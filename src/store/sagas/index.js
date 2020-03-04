@@ -3,6 +3,8 @@ import { watchPeople } from './peopleSagas';
 import { watchMovie } from './movieSagas';
 import { watchTvshow } from './tvshowSagas';
 import { watchDiscover, watchKeywords } from './discoverSagas';
+import { watchSearch } from './searchSagas';
+import { watchDetails } from './detailsSagas';
 
 export default function* rootSaga() {
     yield all([
@@ -10,6 +12,8 @@ export default function* rootSaga() {
         watchMovie(),
         watchTvshow(),
         watchDiscover(),
-        watchKeywords()
+        watchKeywords(),
+        watchSearch(),
+        watchDetails()
     ])
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { fetchTvshows } from '../../../actions';
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 
@@ -19,12 +20,12 @@ class OnTv extends React.Component {
         return this.props.tvshows.entries.results.map((item, index) => {
             if(index < 3){
                 return(
-                    <div key={item.id}>
+                    <Link to={`/details/tv/${item.id}`} key={item.id}>
                         <img alt='' src={`https://image.tmdb.org/t/p/w1000_and_h563_face${item.backdrop_path}`}></img>
                         <div className="title">
                             {item.name}
                         </div>
-                    </div>
+                    </Link>
                 )
             }
             return null

@@ -11,9 +11,9 @@ class LoginPage extends React.Component {
                 <h1 className="section-title">Login to your account</h1>
                 <form className="login-form">
                     <div className="inputs">
-                        <label for="username">username: 
+                        <label htmlFor="username">username: 
                         <input type="text" name="username"></input></label>
-                        <label for="password">password: 
+                        <label htmlFor="password">password: 
                         <input type="password" name="password"></input></label>
                     </div>
                     <button type="submit">LOGIN</button>
