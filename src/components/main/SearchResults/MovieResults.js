@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 import placeholder from '../../../assets/placeholder.svg';
 
 
@@ -37,7 +38,7 @@ class MovieResults extends React.Component {
                                 {entry.overview}
                                 </div>
                                 <div className="rating">Rating: {entry.vote_average}</div>
-                                <h3>More info</h3>
+                                <h3><Link to={`/details/movie/${entry.id}`}>More info</Link></h3>
                             </div>
                         </div>
                         )

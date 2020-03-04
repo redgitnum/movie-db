@@ -515,6 +515,132 @@ h3 {
     -webkit-line-clamp: 12; 
 }
 
+.details .basic {
+    display: flex;
+    justify-content: center;
+    margin: 50px 10px;
+}
+
+.details .basic .poster{
+    flex: 1;
+    max-width: 400px;
+    margin-right: 100px;
+}
+
+.details .basic .poster img{
+    width: 100%;
+}
+
+.details .basic .info{
+    flex: 1;
+    width: 100%;
+    max-width: 600px;
+}
+
+.details .basic .info .name {
+    font-size: 1.4em;
+    font-weight: 600;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; 
+}
+
+.details .basic .info .year {
+    font-size: 1em;
+    font-weight: 400;
+    color: var(--text-gray);
+    margin-bottom: 1em;
+}
+
+.details .basic .info .year .countries{
+    display: inline;
+}
+
+.details .basic .info .year .countries::after{
+    white-space: pre;
+    content: ', ';
+}
+
+.details .basic .info .year .countries:last-of-type::after{
+    white-space: pre;
+    content: '';
+}
+
+.details .basic .info .genres {
+    display: flex;
+    font-size: 1em;
+    font-weight: 400;
+    color: var(--secondary);
+    margin-bottom: 2em;
+}
+
+.details .basic .info .genres *::after {
+    content: ', ';
+    white-space: pre;
+}
+
+.details .basic .info .genres :last-child::after {
+    content: '.';
+}
+
+.details .basic .info .additional,
+.details .basic .info .additional .rating {
+    display: flex;
+}
+
+.details .basic .info .additional .rating{
+    flex: 1;
+}
+
+.details .basic .info .additional .rating .value{
+    font-size: 3.8em;
+    font-weight: 900;
+    line-height: 1em;
+}
+
+.details .basic .info .additional .rating .info{
+    margin-top: 7px;
+    margin-left: 10px;
+}
+
+.details .basic .info .additional .rating .info .title{
+    width: 70px;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--text-gray);
+}
+
+.details .basic .info .additional .rating .info .count{
+    font-size: 0.7em;
+    color: var(--secondary);
+}
+
+.details .basic .info .additional .quick-options {
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+}
+
+.details .basic .info .additional .quick-options img{
+    width: 75px;
+}
+
+.details .basic .info .overview{
+    margin-top: 50px;
+}
+
+.details .basic .info .overview .title{
+    font-size: 1.6em;
+    margin-bottom: 20px;
+}
+
+.details .basic .info .overview .content{
+    font-size: 1.1em;
+    color: var(--text-gray);
+    margin-bottom: 20px;
+}
+
 .login-form {
     display: flex;
     justify-content: space-evenly;

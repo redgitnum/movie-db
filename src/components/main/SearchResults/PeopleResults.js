@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
+
 import placeholder from '../../../assets/placeholder.svg';
 
 
@@ -21,17 +23,19 @@ class PeopleResults extends React.Component {
                     {this.props.search.people && this.props.search.people.results.map(entry => {
                         return(
                         <div className="person" key={entry.id}>
-                            <div className="profile-picture">
-                                <div className="placeholder"></div>
-                                <img onLoad={this.imageLoaded} src={entry.profile_path ? "https://image.tmdb.org/t/p/w154" + entry.profile_path : placeholder} alt=""></img>
-                            </div>
+                            <Link to={`/details/person/${entry.id}`}>
+                                <div className="profile-picture">
+                                    <div className="placeholder"></div>
+                                    <img onLoad={this.imageLoaded} src={entry.profile_path ? "https://image.tmdb.org/t/p/w154" + entry.profile_path : "https://image.tmdb.org/t/p/w154/jHOrNJNM03Lsjdw7nsw7TlqBOhd.jpg"} alt=""></img>
+                                </div>
+                            </Link>
                             <div className="known-for">
                                 {entry.known_for.map((movie, index) => {
                                     if(index <4){
                                         return(
-                                            <div key={movie.id}>
+                                            <Link to={`/details/${movie.media_type}/${movie.id}`} key={movie.id}>
                                                 <div className="placeholder mini"></div>
-                                                <img onLoad={this.imageLoaded} src={movie.poster_path ? "https://image.tmdb.org/t/p/w154" + movie.poster_path : placeholder} alt=""></img>
+                                                <img onLoad={this.imageLoaded} src={movie.poster_path ? "https://image.tmdb.org/t/p/w154" + movie.poster_path : "https://image.tmdb.org/t/p/w154/jHOrNJNM03Lsjdw7nsw7TlqBOhd.jpg"} alt=""></img>
                                                 <div className="tooltip">
                                                     <div className="tooltip-title">
                                                             {movie.original_name || movie.original_title}
@@ -43,7 +47,7 @@ class PeopleResults extends React.Component {
                                                         Average rating: {movie.vote_average}
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </Link>
                                         )
                                     }
                                     return null
