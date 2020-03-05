@@ -239,6 +239,11 @@ h3 {
     grid-template-columns: repeat(5, 1fr);
 }
 
+.grid.full > div a img{
+    opacity: 0;
+    animation: fade-in 0.5s forwards;
+}
+
 .grid .category {
     font-size: 1.4em;
     font-weight: 600;
@@ -289,6 +294,8 @@ h3 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0;
+    animation: fade-in 0.5s forwards;
 }
 
 .grid .thumbnails a:hover img{
@@ -373,6 +380,8 @@ h3 {
     height: 100%;
     object-fit: cover;
     display: none;
+    opacity: 0;
+    animation: fade-in 0.5s forwards;
 }
 
 .known-for {
@@ -393,6 +402,8 @@ h3 {
     width: 100%;
     height: 95px;
     display: none;
+    opacity: 0;
+    animation: fade-in 0.5s forwards;
 }
 
 .tooltip {
@@ -487,6 +498,8 @@ h3 {
     height: 100%;
     object-fit: contain;
     display: none;
+    animation: fade-in 0.5s forwards;
+    opacity: 0;
 }
 
 .entry .info .name {
@@ -535,6 +548,7 @@ h3 {
     flex: 1;
     width: 100%;
     max-width: 600px;
+    position: relative;
 }
 
 .details .basic .info .name {
@@ -587,6 +601,7 @@ h3 {
 .details .basic .info .additional,
 .details .basic .info .additional .rating {
     display: flex;
+    align-items: center;
 }
 
 .details .basic .info .additional .rating{
@@ -600,7 +615,7 @@ h3 {
 }
 
 .details .basic .info .additional .rating .info{
-    margin-top: 7px;
+    margin-top: 2px;
     margin-left: 10px;
 }
 
@@ -628,6 +643,7 @@ h3 {
 
 .details .basic .info .overview{
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .details .basic .info .overview .title{
@@ -639,6 +655,17 @@ h3 {
     font-size: 1.1em;
     color: var(--text-gray);
     margin-bottom: 20px;
+}
+
+.details .basic .info .director div:first-of-type{
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.details .basic .info .director div:last-of-type{
+    font-size: 1.0em;
+    font-weight: 900;
 }
 
 .login-form {
@@ -654,6 +681,7 @@ h3 {
 
 .filters {
     display: flex;
+    justify-content: center;
 }
 
 .filter-item {
@@ -837,4 +865,11 @@ button[type=submit]:hover {
 .footer {
     height: 30px;
     background: var(--bg-light);
+}
+
+
+@keyframes fade-in {
+    to{
+        opacity: 1;
+    }
 }

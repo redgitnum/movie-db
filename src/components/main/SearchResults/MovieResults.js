@@ -23,14 +23,14 @@ class MovieResults extends React.Component {
                     {this.props.search.movies && this.props.search.movies.results.map(entry => {
                         return(
                         <div className="entry" key={entry.id}>
-                            <div className="poster">
+                            <Link to={`/details/movie/${entry.id}`} className="poster">
                                 <div className="placeholder"></div>
                                 <img onLoad={this.imageLoaded} alt="" src={entry.poster_path ? "https://image.tmdb.org/t/p/w342" + entry.poster_path : placeholder}></img>
-                            </div>
+                            </Link>
                             <div className="info">
-                                <div className="name">
+                                <Link to={`/details/movie/${entry.id}`} className="name">
                                     {entry.title}
-                                </div>
+                                </Link>
                                 <div className="year">
                                     {entry.release_date}
                                 </div>

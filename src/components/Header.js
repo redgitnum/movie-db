@@ -11,10 +11,6 @@ class Header extends React.Component {
             <div className="header">
                 <Link to="/" className="logo">
                     <img src={logo} alt=''></img>
-                    {/* <p className="under-title">Find your favorite movie, 
-                        tv show or movie star 
-                        and make your own personal list.
-                    </p> */}
                 </Link>
                 <Navigation />
                 <Login />

@@ -1,13 +1,16 @@
 import React from 'react';
 
-import { fetchPeople } from '../../actions';
+import { fetchPeople, resetStore } from '../../actions';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
+import placeholder from '../../assets/placeholder.svg';
+
 
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = {
-  fetchPeople  
+  fetchPeople,
+  resetStore
 };
 
 
@@ -16,6 +19,10 @@ class People extends React.Component {
 
     componentDidMount() {
         this.props.fetchPeople(this.props.match.params.page);
+    }
+
+    componentWillUnmount(){
+        this.props.resetStore()
     }
 
     componentDidUpdate(prevProps) {
@@ -43,7 +50,7 @@ class People extends React.Component {
                             <Link to={`/details/person/${entry.id}`}>
                                 <div className="profile-picture">
                                     <div className="placeholder"></div>
-                                    <img onLoad={this.imageLoaded} src={entry.profile_path ? "https://image.tmdb.org/t/p/w154" + entry.profile_path : "https://image.tmdb.org/t/p/w154/jHOrNJNM03Lsjdw7nsw7TlqBOhd.jpg"} alt=""></img>
+                                    <img onLoad={this.imageLoaded} src={entry.profile_path ? "https://image.tmdb.org/t/p/w154" + entry.profile_path : placeholder} alt=""></img>
                                 </div>
                             </Link>
                             <div className="known-for">
@@ -52,10 +59,10 @@ class People extends React.Component {
                                         return(
                                             <Link to={`/details/${movie.media_type}/${movie.id}`} key={movie.id}>
                                                 <div className="placeholder mini"></div>
-                                                <img onLoad={this.imageLoaded} src={movie.poster_path ? "https://image.tmdb.org/t/p/w154" + movie.poster_path : "https://image.tmdb.org/t/p/w154/jHOrNJNM03Lsjdw7nsw7TlqBOhd.jpg"} alt=""></img>
+                                                <img onLoad={this.imageLoaded} src={movie.poster_path ? "https://image.tmdb.org/t/p/w154" + movie.poster_path : placeholder} alt=""></img>
                                                 <div className="tooltip">
                                                     <div className="tooltip-title">
-                                                            {movie.original_name || movie.original_title}
+                                                            {movie.name || movie.title}
                                                         <div className="tooltip-year">
                                                             {movie.first_air_date || movie.release_date}
                                                         </div>

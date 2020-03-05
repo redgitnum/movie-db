@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = {
-    fetchMovies  
+    fetchMovies
 };
 
 class InTheaters extends React.Component {
@@ -16,12 +16,20 @@ class InTheaters extends React.Component {
         this.props.fetchMovies('now_playing', '1');
     }
 
+    imageLoaded = (e) => {
+        let placeholder = e.target.parentNode.childNodes[0];
+        let img = e.target;
+        placeholder.style.display = 'none';
+        img.style.display = 'block'
+    }
+
     entries = () => {
         return this.props.movies.entries.results.map((item, index) => {
             if(index < 3){
                 return(
                     <Link to={`/details/movie/${item.id}`} key={item.id}>
-                        <img alt='' src={`https://image.tmdb.org/t/p/w1000_and_h563_face${item.backdrop_path}`}></img>
+                        <div className="placeholder"></div>
+                        <img onLoad={this.imageLoaded} alt='' src={`https://image.tmdb.org/t/p/w1000_and_h563_face${item.backdrop_path}`}></img>
                         <div className="title">
                             {item.title}
                         </div>
@@ -39,7 +47,7 @@ class InTheaters extends React.Component {
                     In Theaters
                </div>
                <div className="thumbnails">
-                   {this.props.movies && this.entries()}
+                   {this.props.movies ? this.entries() : null}
                </div>
             </div>
         )

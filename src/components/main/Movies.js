@@ -1,19 +1,26 @@
 import React from 'react';
 
-import { fetchMovies } from '../../actions';
+import { fetchMovies, resetStore } from '../../actions';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
+import placeholder from '../../assets/placeholder.svg';
+
 
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = {
-  fetchMovies  
+  fetchMovies,
+  resetStore  
 };
 
 class Movies extends React.Component {
 
     componentDidMount() {
         this.props.fetchMovies(this.props.match.params.sort, this.props.match.params.page);
+    }
+
+    componentWillUnmount(){
+        this.props.resetStore()
     }
 
     componentDidUpdate(prevProps) {
@@ -51,14 +58,14 @@ class Movies extends React.Component {
                     {this.props.movies.entries && this.props.movies.entries.results.map(entry => {
                         return(
                         <div className="entry" key={entry.id}>
-                            <div className="poster">
+                            <Link to={`/details/movie/${entry.id}`} className="poster">
                                 <div className="placeholder"></div>
-                                <img onLoad={this.imageLoaded} alt="" src={"https://image.tmdb.org/t/p/w342" + entry.poster_path || "https://image.tmdb.org/t/p/w342/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"}></img>
-                            </div>
+                                <img onLoad={this.imageLoaded} alt="" src={entry.poster_path ? "https://image.tmdb.org/t/p/w342" + entry.poster_path : placeholder}></img>
+                            </Link>
                             <div className="info">
-                                <div className="name">
+                                <Link to={`/details/movie/${entry.id}`} className="name">
                                     {entry.title}
-                                </div>
+                                </Link>
                                 <div className="year">
                                     {entry.release_date}
                                 </div>

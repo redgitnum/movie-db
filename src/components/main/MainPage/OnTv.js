@@ -16,12 +16,20 @@ class OnTv extends React.Component {
         this.props.fetchTvshows('on_the_air', '1');
     }
 
+    imageLoaded = (e) => {
+        let placeholder = e.target.parentNode.childNodes[0];
+        let img = e.target;
+        placeholder.style.display = 'none';
+        img.style.display = 'block'
+    }
+    
     entries = () => {
         return this.props.tvshows.entries.results.map((item, index) => {
             if(index < 3){
                 return(
                     <Link to={`/details/tv/${item.id}`} key={item.id}>
-                        <img alt='' src={`https://image.tmdb.org/t/p/w1000_and_h563_face${item.backdrop_path}`}></img>
+                        <div className="placeholder"></div>
+                        <img onLoad={this.imageLoaded} alt='' src={`https://image.tmdb.org/t/p/w1000_and_h563_face${item.backdrop_path}`}></img>
                         <div className="title">
                             {item.name}
                         </div>
@@ -39,7 +47,7 @@ class OnTv extends React.Component {
                     On Tv
                </div>
                <div className="thumbnails">
-                   {this.props.tvshows && this.entries()}
+                   {this.props.tvshows ? this.entries() : null}
                </div>
             </div>
         )

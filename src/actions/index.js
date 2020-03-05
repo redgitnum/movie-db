@@ -5,7 +5,8 @@ import {
     FETCH_DISCOVER,
     FETCH_KEYWORDS,
     FETCH_SEARCH,
-    FETCH_DETAILS
+    FETCH_DETAILS,
+    RESET_STORE
 } from './actionTypes';
 
 export function fetchMovies(sort, page) {
@@ -61,5 +62,11 @@ export function fetchDetails(id, category) {
     return {
         type: FETCH_DETAILS,
         payload: {id, category}
+    }
+}
+
+export function resetStore() {
+    return {
+        type: RESET_STORE
     }
 }

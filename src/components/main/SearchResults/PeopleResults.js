@@ -26,7 +26,7 @@ class PeopleResults extends React.Component {
                             <Link to={`/details/person/${entry.id}`}>
                                 <div className="profile-picture">
                                     <div className="placeholder"></div>
-                                    <img onLoad={this.imageLoaded} src={entry.profile_path ? "https://image.tmdb.org/t/p/w154" + entry.profile_path : "https://image.tmdb.org/t/p/w154/jHOrNJNM03Lsjdw7nsw7TlqBOhd.jpg"} alt=""></img>
+                                    <img onLoad={this.imageLoaded} src={entry.profile_path ? "https://image.tmdb.org/t/p/w154" + entry.profile_path : placeholder} alt=""></img>
                                 </div>
                             </Link>
                             <div className="known-for">
@@ -35,7 +35,7 @@ class PeopleResults extends React.Component {
                                         return(
                                             <Link to={`/details/${movie.media_type}/${movie.id}`} key={movie.id}>
                                                 <div className="placeholder mini"></div>
-                                                <img onLoad={this.imageLoaded} src={movie.poster_path ? "https://image.tmdb.org/t/p/w154" + movie.poster_path : "https://image.tmdb.org/t/p/w154/jHOrNJNM03Lsjdw7nsw7TlqBOhd.jpg"} alt=""></img>
+                                                <img onLoad={this.imageLoaded} src={movie.poster_path ? "https://image.tmdb.org/t/p/w154" + movie.poster_path : placeholder} alt=""></img>
                                                 <div className="tooltip">
                                                     <div className="tooltip-title">
                                                             {movie.original_name || movie.original_title}
@@ -54,7 +54,7 @@ class PeopleResults extends React.Component {
                                 }) 
                                 }
                             </div>
-                            <div className="name">{entry.name}</div>
+                            <Link to={`/details/person/${entry.id}`} className="name">{entry.name}</Link>
                         </div>
                         )
                     })

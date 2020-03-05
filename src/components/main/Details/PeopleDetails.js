@@ -1,16 +1,21 @@
 import React from 'react';
-import { fetchDetails } from '../../../actions'
+import { fetchDetails, resetStore } from '../../../actions'
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = {
-    fetchDetails  
+    fetchDetails,
+    resetStore
 };
 
 class PeopleDetails extends React.Component{
 
     componentDidMount(){
         this.props.fetchDetails(this.props.match.params.id, 'person');
+    }
+
+    componentWillUnmount(){
+        this.props.resetStore()
     }
 
     render(){

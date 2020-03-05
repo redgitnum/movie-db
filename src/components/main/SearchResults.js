@@ -3,12 +3,13 @@ import TvResults from './SearchResults/TvResults';
 import PeopleResults from './SearchResults/PeopleResults';
 import MovieResults from './SearchResults/MovieResults';
 
-import { fetchSearch } from '../../actions';
+import { fetchSearch, resetStore } from '../../actions';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = {
-    fetchSearch  
+    fetchSearch,
+    resetStore
 };
 
 
@@ -25,6 +26,10 @@ class SearchResults extends React.Component {
 
     componentDidMount() {
         this.props.fetchSearch(this.props.match.params.query);
+    }
+
+    componentWillUnmount(){
+        this.props.resetStore()
     }
 
     componentDidUpdate(prevProps) {

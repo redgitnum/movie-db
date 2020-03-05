@@ -7,7 +7,7 @@ import keywords from './keywordsReducer';
 import search from './searchReducer';
 import details from './detailsReducer';
 
-export const rootReducer = combineReducers({
+const appReducer = combineReducers({
     people,
     movies,
     tvshows,
@@ -16,3 +16,13 @@ export const rootReducer = combineReducers({
     search,
     details
 })
+
+export const rootReducer = (state, action) => {
+    if (action.type === 'RESET_STORE') {
+      state = undefined;
+    }
+  
+    return appReducer(state, action);
+  };
+  
+  export default rootReducer;
