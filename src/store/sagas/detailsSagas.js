@@ -14,12 +14,23 @@ function* getCredits(action) {
     .then(res => res.data);
 }
 
+function* getReviews(action) {
+    return yield axios.get(` https://api.themoviedb.org/3/${action.payload.category}/${action.payload.id}/reviews?api_key=${API_KEY}`)
+    .then(res => res.data);
+}
+
 export function* fetchDetails(action) {
     const details = yield* getDetails(action)
     yield put({type: RETURN_DETAILS, payload: details, category: 'entry'})
+    
+    if(action.payload.category === 'movie'){
+        const credits = yield* getCredits(action)
+        yield put({type: RETURN_DETAILS, payload: credits, category: 'credits'})
 
-    const credits = yield* getCredits(action)
-    yield put({type: RETURN_DETAILS, payload: credits, category: 'credits'})
+        const reviews = yield* getReviews(action)
+        yield put({type: RETURN_DETAILS, payload: reviews, category: 'reviews'})
+    }
+    
     
 }
 

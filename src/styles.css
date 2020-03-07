@@ -239,8 +239,16 @@ h3 {
     grid-template-columns: repeat(5, 1fr);
 }
 
+.grid.full > div a{
+    width: 100%;
+    height: 100%;
+}
+
 .grid.full > div a img{
     opacity: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     animation: fade-in 0.5s forwards;
 }
 
@@ -532,6 +540,8 @@ h3 {
     display: flex;
     justify-content: center;
     margin: 50px 10px;
+    opacity: 0;
+    animation: fade-in 1s forwards;
 }
 
 .details .basic .poster{
@@ -666,6 +676,201 @@ h3 {
 .details .basic .info .director div:last-of-type{
     font-size: 1.0em;
     font-weight: 900;
+}
+
+.details .extra {
+    display: grid;
+    grid-template-columns: auto auto;
+    background: var(--bg-light);
+    padding-bottom: 10px;
+}
+
+.details .extra .facts{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.details .extra .facts .links{
+    display: flex;
+    margin-top: 20px;
+}
+
+.details .extra .facts .links div:first-of-type{
+    font-size: 1.4em;
+    font-weight: 600;
+    margin: auto 0;
+}
+
+.details .extra .facts .links .homepage{
+    margin-left: 25px;
+    margin-right: 5px;
+}
+
+.details .extra .facts .links .homepage img,
+.details .extra .facts .links .imdb img{
+   width: 50px;
+   filter: invert(0.75);
+   transition: 0.2s;
+   user-select: none;
+}
+
+.details .extra .facts .links .homepage:hover img,
+.details .extra .facts .links .imdb:hover img{
+   transform: scale(1.2);
+}
+
+.details .extra .facts > div:nth-child(1n+2){
+    display: flex;
+    text-align: right;
+    flex-direction: column;
+    margin: 5px 5px 5px 20px;
+}
+
+.details .extra .facts > div:nth-child(1n+2) .value{
+    font-weight: 600;
+}
+
+.details .extra .cast > div:first-of-type{
+    font-size: 1.4em;
+    font-weight: 600;
+    padding: 20px 0 0 40px;
+}
+
+.details .extra .cast .top-cast{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 20px 40px;
+    
+}
+
+.details .extra .cast .top-cast > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    grid-column: span 2;
+    font-size: 1.4em;
+    margin-left: 20px;
+    cursor: pointer;
+    user-select: none;
+    width: 100px;
+}
+
+.details .extra .cast .top-cast > div:hover div:first-of-type{
+    transform: scale(1.2);
+}
+
+.details .extra .cast .top-cast > div div:first-of-type{
+    transition: 0.3s;
+    font-size: 3em;
+    text-align: center;
+}
+
+.details .extra .cast .top-cast .member{
+    margin: 0 5px;
+    width: 120px;
+    box-shadow: 3px 3px 6px 2px rgba(0,0,0,0.3);
+}
+
+.details .extra .cast .top-cast .member > div:first-of-type{
+    font-size: 0.85em;
+    font-weight: 600;
+    padding: 0 3px;
+}
+
+.details .extra .cast .top-cast .member > div:last-of-type{
+    font-size: 0.8em;
+    color: var(--text-gray);
+    padding: 0 3px 6px 3px;
+}
+
+.details .extra .cast .top-cast .member img{
+    width: 100%;
+}
+
+.details .reviews{
+    background: var(--bg-light);
+    display: grid;
+    grid-template-columns: 0.8fr 1fr 0.8fr;
+    margin-top: 5px;
+}
+
+.details .reviews > .title{
+    font-size: 1.4em;
+    margin-top: 5px;
+    margin-top: 20px;
+    font-weight: 600;
+    grid-column: 2/3;
+}
+
+.details .reviews .container{
+    grid-column: 2/3;
+}
+
+.details .reviews .container .review{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 700px;
+    background: rgba(255,255,255,.15);
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 10px;
+    box-shadow: 2px 2px 6px var(--bg-dark);
+    overflow: hidden;
+    cursor: pointer;
+    max-height: 900px;
+    transition: 0.2s;
+}
+
+.details .reviews .container .review.hide{
+    max-height: 94px;
+    position: relative;
+}
+
+.details .reviews .container .review.hide:hover{
+    max-height: 112px;
+    position: relative;
+}
+
+.details .reviews .container .review.hide:hover:before{
+    content: 'CLICK TO EXPAND';
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 5px 20px;
+    border-radius: 0 0 0 10px;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    animation: fade-in 0.3s forwards;
+}
+
+.details .reviews .container .review:hover:before{
+    content: 'CLICK TO HIDE';
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 5px 20px;
+    border-radius: 0 0 0 10px;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    animation: fade-in 0.3s forwards;
+}
+
+.details .reviews .container .review .author{
+    font-size: 1.2em;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--text-gray);
+}
+
+.details .reviews .container .review .content{
+    font-size: 0.9em;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--text-gray);
+    white-space: pre-wrap
 }
 
 .login-form {

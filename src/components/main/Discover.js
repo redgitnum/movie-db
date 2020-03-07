@@ -239,7 +239,7 @@ class Discover extends React.Component {
                             value={this.state.keywordInput} 
                             placeholder='Add keywords...'
                             onChange={(e) => {
-                                this.setState({keywordInput: e.target.value.trim()})
+                                this.setState({keywordInput: e.target.value})
                                 this.props.fetchKeywords(e.target.value.trim())
                             }} 
                             onKeyDown={this.onKeyDown} 

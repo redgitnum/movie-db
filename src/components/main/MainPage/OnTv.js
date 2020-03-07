@@ -16,13 +16,15 @@ class OnTv extends React.Component {
         this.props.fetchTvshows('on_the_air', '1');
     }
 
+    
+
     imageLoaded = (e) => {
         let placeholder = e.target.parentNode.childNodes[0];
         let img = e.target;
         placeholder.style.display = 'none';
         img.style.display = 'block'
     }
-    
+
     entries = () => {
         return this.props.tvshows.entries.results.map((item, index) => {
             if(index < 3){
