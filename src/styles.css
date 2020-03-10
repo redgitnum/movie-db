@@ -786,6 +786,8 @@ h3 {
 
 .details .extra .cast .top-cast .member img{
     width: 100%;
+    max-height: 80%;
+    object-fit: cover;
 }
 
 .details .reviews{
@@ -797,7 +799,6 @@ h3 {
 
 .details .reviews > .title{
     font-size: 1.4em;
-    margin-top: 5px;
     margin-top: 20px;
     font-weight: 600;
     grid-column: 2/3;
@@ -805,6 +806,7 @@ h3 {
 
 .details .reviews .container{
     grid-column: 2/3;
+    padding-bottom: 15px;
 }
 
 .details .reviews .container .review{
@@ -820,7 +822,7 @@ h3 {
     box-shadow: 2px 2px 6px var(--bg-dark);
     overflow: hidden;
     cursor: pointer;
-    max-height: 900px;
+    max-height: 1000px;
     transition: 0.2s;
 }
 
@@ -870,7 +872,145 @@ h3 {
     padding-bottom: 5px;
     margin-bottom: 10px;
     border-bottom: 1px solid var(--text-gray);
-    white-space: pre-wrap
+    white-space: pre-wrap;
+    color: var(--text-gray);
+}
+
+.details .media{
+    background: var(--bg-light);
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: 0.8fr 1fr 0.8fr;
+    width: 100%;
+}
+
+.details .media > .title{
+    font-size: 1.4em;
+    margin-top: 20px;
+    font-weight: 600;
+    grid-column: 2/3;
+    width: 700px;
+}
+
+.details .media .container{
+    grid-column: 2/3;
+    max-width: 1000px;
+}
+
+.details .media .container .images,
+.details .media .container .videos{
+    display: flex;
+    flex-direction: column;
+    min-width: 700px;
+    background: rgba(255,255,255,.10);
+    padding: 10px 20px;
+    margin: 10px 0;
+    box-shadow: 2px 2px 6px var(--bg-dark);
+    max-height: 900px;
+    transition: 0.2s;
+}
+
+.details .media .container .images .title,
+.details .media .container .videos .title{
+    font-size: 1.1em;
+    font-weight: 600;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--text-gray);
+}
+
+.details .media .container .images .content {
+    display: flex;
+    overflow: auto;
+    margin: 5px 0 10px;
+    padding-bottom: 10px;
+}
+
+.details .media .container .images .content img {
+    height: 250px;
+    margin-right: 5px;
+}
+
+.details .media .container .videos .content {
+    display: flex;
+    overflow-x: auto;
+    margin: 5px 0 10px;
+    padding-bottom: 10px;
+}
+
+.details .media .container .videos .content div {
+    min-width: 560px;
+    height: 315px;
+    margin-right: 5px;
+}
+
+.details .media .container .videos .content div iframe{
+    width: 100%;
+    height: 100%;
+}
+
+.details .recommended,
+.details .similar{
+    background: var(--bg-light);
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: 0.8fr 1fr 0.8fr;
+    width: 100%;
+    padding-bottom: 15px;
+}
+
+.details .recommended > .title,
+.details .similar > .title{
+    font-size: 1.4em;
+    margin-top: 20px;
+    font-weight: 600;
+    grid-column: 2/3;
+    max-width: 1000px;
+}
+
+.details .recommended .content,
+.details .similar .content{
+    display: flex;
+    background: rgba(255,255,255,.10);
+    padding: 10px 20px;
+    margin: 10px 0;
+    box-shadow: 2px 2px 6px var(--bg-dark);
+    transition: 0.2s;
+    grid-column: 2/3;
+}
+
+.details .recommended .content > a,
+.details .similar .content > a{
+    margin: 4px;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.details .recommended .content > a:last-child,
+.details .similar .content > a:last-child{
+    margin-right: 0;
+}
+
+.details .recommended .content > a img,
+.details .similar .content > a img{
+    width: 185px;
+    object-fit: contain;
+}
+
+.details .recommended .content > a .name,
+.details .similar .content > a .name{
+    display: none;
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    padding: 10px 5px;
+    bottom: 5px;
+    width: calc(100% - 10px);
+}
+
+.details .recommended .content > a:hover .name,
+.details .similar .content > a:hover .name{
+    display: block;
 }
 
 .login-form {

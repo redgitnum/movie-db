@@ -25,6 +25,13 @@ class MovieDetails extends React.Component{
         this.props.fetchDetails(this.props.match.params.id, 'movie');
     }
 
+    componentDidUpdate(prevProps){
+        if(prevProps.match.params.id !== this.props.match.params.id) {
+            this.props.resetStore()
+            this.props.fetchDetails(this.props.match.params.id, 'movie');
+        }
+    }
+
     componentWillUnmount(){
         this.props.resetStore()
     }
@@ -196,7 +203,7 @@ class MovieDetails extends React.Component{
                                             <Link to={`/details/person/${entry.id}`} key={entry.id} className="member">
                                                 <img alt='' src={entry.profile_path ? `https://image.tmdb.org/t/p/w154${entry.profile_path}` : placeholder}></img>
                                                 <div>{entry.name}</div>
-                                                <div>as {entry.character}</div>
+                                                {entry.character ? <div>as {entry.character}</div> : null}
                                             </Link>
                                         )
                                     }
@@ -211,6 +218,7 @@ class MovieDetails extends React.Component{
                         </div>
                     </div>
                 : null}
+
                 {(this.props.details.reviews && this.props.details.reviews.results.length) ? 
                     <div className='reviews'>
                         <div className='title'>
@@ -235,6 +243,111 @@ class MovieDetails extends React.Component{
                                         </div>
                                     </div>
                                 )
+                            })}
+                        </div>
+                    </div>
+                : null}
+
+                {(  (this.props.details.images && (this.props.details.images.backdrops.length || this.props.details.images.posters.length)) || 
+                    (this.props.details.videos && this.props.details.videos.results.length) 
+                )   ? 
+                    <div className='media'>
+                        <div className='title'>
+                            Media
+                        </div>
+                        <div className='container'>
+                            {this.props.details.images ? 
+                                <div className='images'>
+                                    <div className='title'>
+                                        Images
+                                    </div>
+                                    <div className='content'>
+                                        {this.props.details.images.backdrops.map(image => {
+                                            return(
+                                                <img alt='' key={image.file_path} src={'http://image.tmdb.org/t/p/w780' + image.file_path}>
+
+                                                </img>
+                                            )
+                                        })}
+                                        {this.props.details.images.posters.map(image => {
+                                            return(
+                                                <img alt='' key={image.file_path} src={'http://image.tmdb.org/t/p/w185' + image.file_path}>
+
+                                                </img>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
+                            : null}
+
+                            {this.props.details.videos ?
+                                <div className='videos'>
+                                    <div className='title'>
+                                        Videos
+                                    </div>
+                                    <div className='content'>
+                                        {this.props.details.videos.results.map(video => {
+                                                return(
+                                                    <div key={video.id}>
+                                                        <iframe 
+                                                        title={video.name}
+                                                        src={"https://www.youtube.com/embed/"+video.key}
+                                                        frameBorder="0" 
+                                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                                        allowFullScreen
+                                                        >
+                                                        </iframe>
+                                                    </div>
+                                                )
+                                        })}
+                                    </div>
+                                </div>
+                            : null}
+                            </div>
+                    </div>
+                : null}
+
+                {(this.props.details.recommended && this.props.details.recommended.results.length) ? 
+                    <div className='recommended'>
+                        <div className='title'>
+                            Recommended
+                        </div>
+                        <div className='content'>
+                            {this.props.details.recommended.results.map((entry, index) => {
+                                if(index < 5){
+                                    return(
+                                    <Link to={`/details/movie/${entry.id}`} key={entry.id}>
+                                        <img alt='' src={entry.poster_path ? 'http://image.tmdb.org/t/p/w185' + entry.poster_path : placeholder}></img>
+                                        <div className='name'>
+                                            {entry.title}{entry.release_date ? ' - ' + entry.release_date.slice(0,4) : null}
+                                        </div>
+                                    </Link>
+                                    )
+                                }
+                                return null
+                            })}
+                        </div>
+                    </div>
+                : null}
+
+                {(this.props.details.similar && this.props.details.similar.results.length)? 
+                    <div className='similar'>
+                        <div className='title'>
+                            Similar
+                        </div>
+                        <div className='content'>
+                            {this.props.details.similar.results.map((entry, index) => {
+                                if(index < 5){
+                                    return(
+                                    <Link to={`/details/movie/${entry.id}`} key={entry.id}>
+                                        <img alt='' src={entry.poster_path ? 'http://image.tmdb.org/t/p/w185' + entry.poster_path : placeholder}></img>
+                                        <div className='name'>
+                                            {entry.title}{entry.release_date ? ' - ' + entry.release_date.slice(0,4) : null}
+                                        </div>
+                                    </Link>
+                                    )
+                                }
+                                return null
                             })}
                         </div>
                     </div>
