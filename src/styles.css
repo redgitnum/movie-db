@@ -667,15 +667,26 @@ h3 {
     margin-bottom: 20px;
 }
 
-.details .basic .info .director div:first-of-type{
+.details .basic .info .director > div:first-child{
     font-size: 1.1em;
     margin-bottom: 5px;
     color: white;
 }
 
-.details .basic .info .director div:last-of-type{
+.details .basic .info .director > div:last-child *{
+    display: inline-block;
     font-size: 1.0em;
     font-weight: 900;
+}
+
+.details .basic .info .director > div:last-child *::after{
+    content: ', ';
+    white-space: pre;
+}
+
+.details .basic .info .director > div:last-child >div:last-child::after{
+    content: '';
+    white-space: pre;
 }
 
 .details .extra {

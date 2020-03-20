@@ -43,7 +43,7 @@ export function* fetchDetails(action) {
     const details = yield* getDetails(action)
     yield put({type: RETURN_DETAILS, payload: details, category: 'entry'})
     
-    if(action.payload.category === 'movie'){
+    if(action.payload.category === 'movie' || action.payload.category === 'tv'){
         const credits = yield* getCredits(action)
         yield put({type: RETURN_DETAILS, payload: credits, category: 'credits'})
 
