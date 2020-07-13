@@ -14,7 +14,7 @@ body, html {
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
-    color: white;
+    color: rgb(226, 226, 226);
     background-color: var(--bg-dark);
     background-image: url('./assets/bg-slice4.svg');
 }
@@ -687,6 +687,10 @@ h3 {
 .details .basic .info .director > div:last-child >div:last-child::after{
     content: '';
     white-space: pre;
+}
+
+.details .basic .info .dates {
+    padding-top: 10px;
 }
 
 .details .extra {
