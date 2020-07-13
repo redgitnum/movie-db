@@ -39,7 +39,7 @@ function* getSimilar(action) {
     .then(res => res.data);
 }
 
-export function* fetchDetails(action) {
+function* fetchDetails(action) {
     const details = yield* getDetails(action)
     yield put({type: RETURN_DETAILS, payload: details, category: 'entry'})
     

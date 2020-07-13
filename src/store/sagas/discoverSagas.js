@@ -5,7 +5,7 @@ import {
 import { API_KEY } from '../../keys'
 import axios from 'axios';
 
-export function* fetchDiscover(action) {
+function* fetchDiscover(action) {
     let keywords = Array.from(action.payload.keywords).map((item) => {
         return item.id
     })
@@ -32,10 +32,10 @@ export function* watchDiscover() {
 }
 
 
-export function* fetchKeywords(action) {
+function* fetchKeywords(action) {
     if(action.payload.length){
         yield delay(800);
-        const result = yield axios.get(` https://api.themoviedb.org/3/search/keyword?api_key=${API_KEY}&query=${action.payload}&page=1`)
+        const result = yield axios.get(`https://api.themoviedb.org/3/search/keyword?api_key=${API_KEY}&query=${action.payload}&page=1`)
         .then(res => res.data)
     
         yield put({type: RETURN_KEYWORDS, payload: result})

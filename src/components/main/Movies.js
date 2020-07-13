@@ -70,7 +70,7 @@ class Movies extends React.Component {
                                     {entry.release_date}
                                 </div>
                                 <div className="overview">
-                                {entry.overview}
+                                    {entry.overview}
                                 </div>
                                 <div className="rating">Rating: {entry.vote_average}</div>
                                 <h3><Link to={`/details/movie/${entry.id}`}>More info</Link></h3>
