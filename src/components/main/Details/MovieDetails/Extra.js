@@ -76,7 +76,7 @@ class Extra extends React.Component {
                 <div className='cast'>
                     <div>Top billed Cast</div>
                     <div className="top-cast">
-                        {this.props.details.credits.cast.map((entry, index) => {
+                        {this.props.details.credits.cast && this.props.details.credits.cast.map((entry, index) => {
                             if(index <5){
                                 return(
                                     <Link to={`/details/person/${entry.id}`} key={entry.id} className="member">

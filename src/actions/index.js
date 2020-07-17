@@ -6,6 +6,7 @@ import {
     FETCH_KEYWORDS,
     FETCH_SEARCH,
     FETCH_DETAILS,
+    FETCH_USER,
     RESET_STORE
 } from './actionTypes';
 
@@ -68,5 +69,12 @@ export function fetchDetails(id, category) {
 export function resetStore() {
     return {
         type: RESET_STORE
+    }
+}
+
+export function fetchUser() {
+    return {
+        type: FETCH_USER,
+        payload: 'logged user'
     }
 }

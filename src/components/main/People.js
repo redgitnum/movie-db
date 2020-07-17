@@ -39,7 +39,6 @@ class People extends React.Component {
     }
 
     render() {
-        console.log(this.props.people)
         return(
             <div className="section">
                 <h1 className="section-title">Popular People</h1>

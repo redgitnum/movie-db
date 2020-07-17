@@ -6,6 +6,7 @@ import discover from './discoverReducer';
 import keywords from './keywordsReducer';
 import search from './searchReducer';
 import details from './detailsReducer';
+import user from './loginReducer';
 
 const appReducer = combineReducers({
     people,
@@ -14,12 +15,18 @@ const appReducer = combineReducers({
     discover,
     keywords,
     search,
-    details
+    details,
+    user
 })
 
 export const rootReducer = (state, action) => {
     if (action.type === 'RESET_STORE') {
+      let userData = state.user;
       state = undefined;
+      return {
+        ...state, 
+        user: userData
+      }
     }
   
     return appReducer(state, action);

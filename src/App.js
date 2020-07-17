@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -15,8 +16,8 @@ import MovieDetails from './components/main/Details/MovieDetails';
 import TvDetails from './components/main/Details/TvDetails';
 import PeopleDetails from './components/main/Details/PeopleDetails';
 
-
-
+import { fetchUser } from './actions';
+import { connect } from 'react-redux';
 
 import {
   BrowserRouter as Router,
@@ -24,9 +25,23 @@ import {
   Route
 } from "react-router-dom";
 
+
+const mapStateToProps = state => state;
+const mapDispatchToProps = {
+  fetchUser
+};
+
 class App extends React.Component {
+  // componentDidMount() {
+  //   this.props.fetchUser()
+    
+  //   // axios.post('/user/login')
+  //   // .then(result => console.log(result))
+  // } 
+
 
 render() {
+  console.log(this.props)
   return (
     <Router>
       <div className="App">
@@ -58,4 +73,4 @@ render() {
   
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

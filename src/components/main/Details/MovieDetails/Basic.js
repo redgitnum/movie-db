@@ -15,7 +15,6 @@ class Basic extends React.Component {
     }
     
     render() {
-        console.log(this.props)
         function getDirector(crew) {
             const director = crew.filter(person => person.job === 'Director');
             if(director.length){

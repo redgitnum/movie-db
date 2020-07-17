@@ -39,11 +39,29 @@ function* getSimilar(action) {
     .then(res => res.data);
 }
 
+function* getPlayedIn(action) {
+    return yield axios.get(` https://api.themoviedb.org/3/person/${action.payload.id}/combined_credits?api_key=${API_KEY}&language=en-US`)
+    .then(res => res.data)
+    .then(data => {
+        let tv = (data.cast.filter(entry => entry.media_type ==='tv').sort((a,b)=> a.popularity < b.popularity).slice(0,10))
+        let movies = (data.cast.filter(entry => entry.media_type ==='movie').sort((a,b)=> a.popularity < b.popularity).slice(0,10))
+        return {
+            'movies': movies,
+            'tv': tv}
+    })
+}
+
+
 function* fetchDetails(action) {
     const details = yield* getDetails(action)
     yield put({type: RETURN_DETAILS, payload: details, category: 'entry'})
+
+    if(action.payload.category === 'person'){
+        const playedIn = yield* getPlayedIn(action)
+        yield put({type: RETURN_DETAILS, payload: playedIn, category: 'credits'})
+    }
     
-    if(action.payload.category === 'movie' || action.payload.category === 'tv'){
+    else if(action.payload.category === 'movie' || action.payload.category === 'tv'){
         const credits = yield* getCredits(action)
         yield put({type: RETURN_DETAILS, payload: credits, category: 'credits'})
 

@@ -97,7 +97,7 @@ h3 {
     width: 100%;
     z-index: 1;
     text-decoration: none;
-    row-gap: 1px;
+    row-gap: 2px;
 }
 
 .nav-container:hover .menu .nav-sort{
@@ -107,11 +107,12 @@ h3 {
 .nav-sort *{
     width: 80%;
     text-decoration: none;
-    color: var(--secondary);
+    color: var(--text-gray);
+    font-weight: 600;
     background-color: var(--bg-light);
-    border: 1px solid var(--text-gray);
+    box-shadow: 0px 0px 2px 2px var(--text-gray);
     border-radius: 50px;
-    padding: 5px 15px 10px 10px;
+    padding: 10px 15px 10px 10px;
 }
 
 .nav-sort *:hover{
@@ -374,6 +375,7 @@ h3 {
     width: 10px;
     height: 10px;
 }
+
 @keyframes loader {
     from{
         transform: rotate(0deg);
@@ -547,6 +549,7 @@ h3 {
 .details .basic .poster{
     flex: 1;
     max-width: 400px;
+    min-width: 200px;
     margin-right: 100px;
 }
 
@@ -554,9 +557,16 @@ h3 {
     width: 100%;
 }
 
+.details .basic .poster.face{
+    flex: 1;
+    max-width: 300px;
+    margin-right: 100px;
+}
+
 .details .basic .info{
     flex: 1;
     width: 100%;
+    min-width: 300px;
     max-width: 600px;
     position: relative;
 }
@@ -654,6 +664,7 @@ h3 {
 .details .basic .info .overview{
     margin-top: 50px;
     margin-bottom: 50px;
+    white-space: pre-line;
 }
 
 .details .basic .info .overview .title{
@@ -692,6 +703,9 @@ h3 {
 .details .basic .info .dates {
     padding-top: 10px;
 }
+.details .basic .info .dates *{
+    margin-top: 5px;
+}
 
 .details .extra {
     display: grid;
@@ -715,6 +729,23 @@ h3 {
     font-size: 1.4em;
     font-weight: 600;
     margin: auto 0;
+}
+
+.homepage, .imdb  {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.homepage img, .imdb img {
+    width: 35px;
+    filter: invert(0.75);
+    transition: 0.2s;
+    user-select: none;
+    vertical-align: text-bottom;
+}
+
+.homepage:hover img, .imdb:hover img {
+    transform: scale(1.2);
 }
 
 .details .extra .facts .links .homepage{
@@ -964,6 +995,35 @@ h3 {
     height: 100%;
 }
 
+.details .playedIn {
+    background: var(--bg-light);
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr 0.3fr;
+    width: 100%;
+    padding-bottom: 15px;
+}
+
+.details .playedIn > .title {
+    font-size: 1.4em;
+    margin-top: 20px;
+    font-weight: 600;
+    grid-column: 2/3;
+    max-width: 1000px;
+}
+
+.details .playedIn .content{
+    display: flex;
+    flex-wrap: wrap;
+    background: rgba(255,255,255,.10);
+    padding: 10px 20px;
+    justify-content: center;
+    margin: 10px 0;
+    box-shadow: 2px 2px 6px var(--bg-dark);
+    transition: 0.2s;
+    grid-column: 2/3;
+}
+
 .details .recommended,
 .details .similar{
     background: var(--bg-light);
@@ -995,7 +1055,8 @@ h3 {
 }
 
 .details .recommended .content > a,
-.details .similar .content > a{
+.details .similar .content > a,
+.details .playedIn .content > a{
     margin: 4px;
     position: relative;
     cursor: pointer;
@@ -1003,7 +1064,8 @@ h3 {
 }
 
 .details .recommended .content > a:last-child,
-.details .similar .content > a:last-child{
+.details .similar .content > a:last-child,
+.details .playedIn .content > a:last-child{
     margin-right: 0;
 }
 
@@ -1013,8 +1075,14 @@ h3 {
     object-fit: contain;
 }
 
+.details .playedIn .content > a img{
+    width: 150px;
+    object-fit: contain;
+}
+
 .details .recommended .content > a .name,
-.details .similar .content > a .name{
+.details .similar .content > a .name,
+.details .playedIn .content > a .name{
     display: none;
     position: absolute;
     background: rgba(0,0,0,0.8);
@@ -1024,7 +1092,8 @@ h3 {
 }
 
 .details .recommended .content > a:hover .name,
-.details .similar .content > a:hover .name{
+.details .similar .content > a:hover .name,
+.details .playedIn .content > a:hover .name{
     display: block;
 }
 
@@ -1224,7 +1293,7 @@ button[type=submit]:hover {
 
 .footer {
     height: 30px;
-    background: var(--bg-light);
+    /* background: var(--bg-light); */
 }
 
 

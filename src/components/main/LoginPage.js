@@ -4,12 +4,16 @@ import { Link } from "react-router-dom";
 
 
 class LoginPage extends React.Component {
+    authLogin = (e) => {
+        e.preventDefault();
+        console.log(e.target.password.value)
+    }
 
     render() {
         return(
             <div className="section">
                 <h1 className="section-title">Login to your account</h1>
-                <form className="login-form">
+                <form onSubmit={this.authLogin} className="login-form">
                     <div className="inputs">
                         <label htmlFor="username">username: 
                         <input type="text" name="username"></input></label>

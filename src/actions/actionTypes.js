@@ -19,4 +19,7 @@ export const RETURN_SEARCH = "RETURN_SEARCH";
 export const FETCH_DETAILS = "FETCH_DETAILS";
 export const RETURN_DETAILS = "RETURN_DETAILS";
 
+export const FETCH_USER = "FETCH_USER";
+export const RETURN_USER = "RETURN_USER";
+
 export const RESET_STORE = "RESET_STORE";
