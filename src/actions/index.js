@@ -72,9 +72,9 @@ export function resetStore() {
     }
 }
 
-export function fetchUser() {
+export function fetchUser(username, password) {
     return {
         type: FETCH_USER,
-        payload: 'logged user'
+        payload: {username, password}
     }
 }

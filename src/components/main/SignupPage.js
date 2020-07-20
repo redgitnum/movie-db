@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link, Redirect } from "react-router-dom";
-import bcrypt, { hash } from 'bcryptjs'
+import { connect } from 'react-redux';
+
+import bcrypt from 'bcryptjs'
 import axios from 'axios';
-import qs from 'qs'
+import qs from 'qs';
+
+const mapStateToProps = state => state;
 
 
 class SignupPage extends React.Component {
-    state = { registered: false }
+    state = {registered: false}
 
     checkRegistered = () => {
         return this.state.registered ? <Redirect to='/login' /> : null
@@ -14,17 +18,25 @@ class SignupPage extends React.Component {
         
     registerUser = async (e) => {
         e.preventDefault();
+        let form = e.target
         let username = e.target.username.value
         if(e.target.password.value === e.target.confirm_password.value){
             let hashedPassword = await bcrypt.hash(e.target.password.value, 10);
             await axios.post('/user/register', qs.stringify({
                 username: username,
                 password: hashedPassword
-            })).then(response => console.log(response.data))
-              this.setState({registered: true})
+            })).then(response => {
+                if(response.data.success){
+                    console.log(response.data.message)
+                    this.setState({registered: true})
+                } else {
+                    console.log(response.data.message)
+                    form.reset()
+                }
+            })
         } else {
             alert('passwords do not match');
-            e.target.reset()
+            form.reset()
         }
         
     }
@@ -39,11 +51,11 @@ class SignupPage extends React.Component {
                 <form onSubmit={this.registerUser} className="login-form">
                     <div className="inputs">
                         <label htmlFor="username">username: 
-                        <input type="text" name="username"></input></label>
+                        <input type="text" name="username" minLength='5'></input></label>
                         <label htmlFor="password">password: 
-                        <input type="password" name="password"></input></label>
+                        <input type="password" name="password" minLength='5'></input></label>
                         <label htmlFor="confirm_password">confirm password: 
-                        <input type="password" name="confirm_password"></input></label>
+                        <input type="password" name="confirm_password" minLength='5'></input></label>
                     </div>
                     <button type="submit">SIGN UP</button>
                 </form>
@@ -61,4 +73,4 @@ class SignupPage extends React.Component {
     }
 }
 
-export default SignupPage;
+export default connect(mapStateToProps)(SignupPage);

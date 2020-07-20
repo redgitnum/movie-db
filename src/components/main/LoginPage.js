@@ -1,17 +1,29 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { fetchUser } from '../../actions';
+import { connect } from 'react-redux';
 
+const mapStateToProps = state => state;
+const mapDispatchToProps = {
+  fetchUser
+};
 
 
 class LoginPage extends React.Component {
-    authLogin = (e) => {
+
+    checkLogged = () => {
+        return this.props.user.username ? <Redirect to='/'/> : null
+    }
+
+    authLogin = async (e) => {
         e.preventDefault();
-        console.log(e.target.password.value)
+        this.props.fetchUser(e.target.username.value, e.target.password.value)
     }
 
     render() {
         return(
             <div className="section">
+                {this.checkLogged()}
                 <h1 className="section-title">Login to your account</h1>
                 <form onSubmit={this.authLogin} className="login-form">
                     <div className="inputs">
@@ -35,4 +47,4 @@ class LoginPage extends React.Component {
     }
 }
 
-export default LoginPage;
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

@@ -35,6 +35,13 @@ h3 {
     color: var(--primary);
     font-size: 1.4em;
 }
+
+h4 {
+    color: var(--primary);
+    margin: 5px 0 10px;
+    font-size: 1.2em;
+    text-align: center;
+}
 .header {
     display: flex;
     background: var(--bg-light);
@@ -210,6 +217,34 @@ h3 {
 
 .section {
     min-height: calc(100vh - 220px);
+}
+
+.section.account {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.section.account .section-title{
+    width: 100%;
+}
+
+.section.account .box{
+    flex: 1 0 300px;
+    background: var(--bg-light);
+    margin: 20px;
+    padding: 5px 25px;
+    border-radius: 45px;
+    border: 2px solid var(--secondary);
+}
+
+.section.account .box .container{
+    
+}
+
+.section.account .box .container .item{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .section.main-grid {

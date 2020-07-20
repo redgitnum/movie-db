@@ -1,4 +1,5 @@
 import React from 'react';
+
 import OnTv from './MainPage/OnTv';
 import InTheaters from './MainPage/InTheaters';
 import PopularPeople from './MainPage/PopularPeople';
@@ -7,7 +8,6 @@ import PopularPeople from './MainPage/PopularPeople';
 
 
 class MainPage extends React.Component {
-
 
     render() {
         return(
