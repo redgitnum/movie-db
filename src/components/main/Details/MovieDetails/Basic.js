@@ -4,9 +4,100 @@ import rate from '../../../../assets/rate.svg';
 import add_watchlist from '../../../../assets/add_watchlist.svg';
 import add_favourite from '../../../../assets/add_favourite.svg';
 import placeholder from '../../../../assets/placeholder.svg';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import qs from 'qs';
+
+const mapStateToProps = state => state;
+
 
 
 class Basic extends React.Component {
+    state = {modalVisibility: ''}
+
+    showModal = (e) => {
+        this.setState({modalVisibility: e.target.parentNode.attributes.name.value})
+        document.body.style.overflow = 'hidden'
+    }
+
+    hideModal = (e) => {
+        if((e.target && e.target.className === 'modal-box') || (e ==='modal-box')){
+            this.setState({modalVisibility: ''})
+            document.body.style.overflow = ''
+        }   
+    }
+
+    formValitadion = (e) => {
+        e.preventDefault() 
+        let dataType = e.target.id
+        let data = (e.target.rating && e.target.rating.value) || (e.target.review && e.target.review.value) || (e.target.watchlist && true)
+        let entryType = this.props.details.entry.release_date ? 'movie': 'tv'
+        axios.post('/user/update/records', qs.stringify({
+            mediaId: this.props.details.entry.id,
+            entryType: entryType,
+            dataType: dataType, 
+            data: data, 
+            username: this.props.user.username}))
+        .then(res => console.log(res.data))
+        .then(this.hideModal('modal-box'))
+    }
+
+    Modal = () => {
+        return(
+            <div className="modal-container" >
+                <div className='modal-box' onClick={this.hideModal}>
+                    <div className='modal-window'>
+                        {this.state.modalVisibility === 'rate' && 
+                        <>
+                            <div className='modal-title'>
+                                Rate this movie:
+                            </div>
+                            <div className='modal-body'>
+                                <div>Rate from 0 to 10</div>
+                                <form onSubmit={this.formValitadion} id='rate_form'>
+                                    <input required type="number" min="0" max="10" step='0.1' name='rating'></input>
+                                    <button type='submit'>Rate</button>
+                                </form>
+                            </div>
+                        </>
+                        }
+                        {this.state.modalVisibility === 'review' &&
+                        <>
+                            <div className='modal-title'>
+                                Write your review for this movie
+                            </div>
+                            <div className='modal-body'>
+                                <div>Write at least 50 letters</div>
+                                <div>
+                                    <textarea required form='review_form' minLength='50' name='review'></textarea>
+                                </div>
+                                <form onSubmit={this.formValitadion} id='review_form'>
+                                    <button type='submit'>Submit review</button>
+                                </form>
+                            </div>
+                        </>
+                        }   
+                        {this.state.modalVisibility === 'watchlist' &&
+                        <>
+                            <div className='modal-title'>
+                                Add to watchlist
+                            </div>
+                            <div className='modal-body'>
+                                <div>Confirm to add to your watchlist</div>
+                                <form onSubmit={this.formValitadion} id='watchlist_form'>
+                                    <button type='submit' name='watchlist'>Confirm</button>
+                                </form>
+                            </div>
+                        </>
+                        } 
+                    </div>
+                </div>
+            </div>
+        )
+    }
+            
+        
+
     imageLoaded = (e) => {
         let placeholder = e.target.parentNode.childNodes[0];
         let img = e.target;
@@ -25,6 +116,7 @@ class Basic extends React.Component {
 
         return(
             <div className='basic'>
+                {this.state.modalVisibility !== '' && <this.Modal />}
                 <div className="poster">
                     <div className="placeholder"></div>
                     <img onLoad={this.imageLoaded} alt="" src={this.props.details.entry.poster_path ? "https://image.tmdb.org/t/p/w500" + this.props.details.entry.poster_path : placeholder}></img>
@@ -59,9 +151,18 @@ class Basic extends React.Component {
                             </div>
                         </div>
                         <div className="quick-options">
-                            <img alt='' src={rate}></img>
-                            <img alt='' src={add_favourite}></img>
-                            <img alt='' src={add_watchlist}></img>
+                            <div onClick={this.showModal} name='rate'>
+                                <img alt='' src={rate}></img>
+                                <div className="quick-options-tip">Rate</div>
+                            </div>
+                            <div onClick={this.showModal} name='review'>
+                                <img alt='' src={add_favourite}></img>
+                                <div className="quick-options-tip">Review</div>
+                            </div>
+                            <div onClick={this.showModal} name='watchlist'>
+                                <img alt='' src={add_watchlist}></img>
+                                <div className="quick-options-tip">Add to watchlist</div>
+                            </div>
                         </div>
                     </div>
                     <div className="overview">
@@ -101,4 +202,4 @@ class Basic extends React.Component {
 }
 
 
-export default Basic
+export default connect(mapStateToProps)(Basic)

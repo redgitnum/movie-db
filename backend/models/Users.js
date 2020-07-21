@@ -12,6 +12,28 @@ const userSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    records: {
+        ratings: [
+            {
+                id: String,
+                rating: String,
+                media: String
+            }
+        ],
+        reviews: [
+            {
+                id: String,
+                review: String,
+                media: String
+            }
+        ],
+        watchlist: [
+            {
+                id: String,
+                media: String
+            }
+        ]
     }
 })
 

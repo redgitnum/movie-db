@@ -72,4 +72,24 @@ app.post('/user/update', (req, res) => {
     }).catch(e => console.log(e))
 })
 
+app.post('/user/update/records', (req, res) => {
+    User.findOne({username: req.body.username})
+    .then( async user => {
+        switch(req.body.dataType){
+            case 'rate_form' : 
+                user.records.ratings.push({id: req.body.mediaId, rating: req.body.data, media: req.body.entryType});
+                break;
+            case 'review_form':
+                user.records.reviews.push({id: req.body.mediaId, review: req.body.data, media: req.body.entryType});
+                break;
+            default: 
+                user.records.watchlist.push({id: req.body.mediaId, media: req.body.entryType});
+                break;
+        }
+        await user.save()
+        return res.send('movie was rated successfully')
+    }).catch(e => console.log(e))
+})
+
+
 app.listen(5000, () => console.log('app running on port 5000...'))

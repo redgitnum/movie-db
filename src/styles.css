@@ -42,6 +42,21 @@ h4 {
     font-size: 1.2em;
     text-align: center;
 }
+
+h5 {
+    color: var(--text-gray);
+    margin: 10px 0;
+    font-size: 1.3em;
+    font-weight: 100;
+}
+
+h6 {
+    color: var(--secondary);
+    margin: 10px 0;
+    font-size: 1.3em;
+    font-weight: 100;
+}
+
 .header {
     display: flex;
     background: var(--bg-light);
@@ -230,7 +245,7 @@ h4 {
 }
 
 .section.account .box{
-    flex: 1 0 300px;
+    flex: 1 0 550px;
     background: var(--bg-light);
     margin: 20px;
     padding: 5px 25px;
@@ -238,13 +253,119 @@ h4 {
     border: 2px solid var(--secondary);
 }
 
-.section.account .box .container{
-    
+.section.account .box .readmore{
+    text-align: right;
+    font-size: 1.2em;
+    padding: 10px;
+    margin: 0;
+    color: var(--primary);
+    text-decoration: underline;
 }
 
-.section.account .box .container .item{
+.section.account .box .item{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--secondary);
+    text-align: center;
+    padding: 10px 0 20px;
+}
+
+.section.account .box .item:last-child{
+    border: none;
+}
+
+
+.section.account .box .item p,
+.section.account .box .item label {
+    margin: 0;
+    padding: 10px 0;
+    color: white;
+}
+
+.section.account .box .item > *:nth-child(2n + 1){
+    border-right: 1px solid var(--secondary);
+}
+
+
+.section.account .box .item input {
+    background: var(--secondary);
+    padding-left: 5px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.section.account .box .item button{
+    margin: 30px 0 0;
+    border-bottom: none;
+    grid-column: 1/3 !important;
+    justify-self: center; 
+}
+
+.section.account .box .item.review{
+    display: grid;
+    grid-template-columns: 250px 1fr 1fr;
+    border-bottom: 1px solid var(--secondary);
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+.section.account .box .item.review > *{
+    border-right: none;
+
+}
+
+.section.account .box .item.review > div:first-child{
+    grid-column: 1/2;
+}
+
+.section.account .box .item.review > div:first-child img{
+    object-fit: contain;
+    width: 250px;
+}
+
+.section.account .box .item.review > div:last-child{
+    grid-column: 2/4;
+    margin-left: 15px;
+}
+
+.section.account .box .item.review > div:last-child > div:first-of-type{
+    font-size: 1.3em;
+}
+
+.section.account .box .item.review > div:last-child > div:last-of-type{
+    margin: 15px 0;
+    font-size: 1.0em;
+    color: var(--secondary);
+    font-weight: 100;
+}
+
+.section.account .box .item .container{
+    display: flex;
+    border: 1px solid var(--secondary);
+    border-radius: 2px;
+    background: rgba(0,0,0,0.1);
+    margin: 2px 5px;
+    padding: 2px;
+}
+
+.section.account .box .item .container img{
+    object-fit: contain;
+    margin: 2px;
+    width: 50px;
+}
+
+.section.account .box .item .container > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 10px 0 10px 15px;
+    font-size: 1.2em;
+}
+
+.section.account .box .item .container > div > div:nth-of-type(2){
+    font-size: 0.8em;
 }
 
 .section.main-grid {
@@ -692,7 +813,97 @@ h4 {
     justify-content: space-around;
 }
 
-.details .basic .info .additional .quick-options img{
+.details .basic .info .additional .quick-options div {
+    position: relative;
+}
+
+.details .basic .info .additional .quick-options div .quick-options-tip{
+    display: none;
+    background: var(--secondary);
+    border: 1px solid var(--bg-dark);
+    border-radius: 5px;
+    padding: 2px 5px;
+    width: 85px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--bg-dark);
+    user-select: none;
+}
+
+.details .basic .info .additional .quick-options div:hover {
+    filter: brightness(1.2);
+    cursor: pointer;
+}
+
+
+.details .basic .info .additional .quick-options div:hover .quick-options-tip {
+    display: block;
+    position: absolute;
+    left: -10px;
+    top: 75px;
+    filter: none;
+}
+
+.modal-container {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 100;
+}
+
+.modal-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.modal-window {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 35px;
+    height: auto;
+    width: auto;
+    background: var(--bg-light);
+    border: 2px solid var(--secondary);
+    border-radius: 20px;
+}
+
+.modal-title {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--secondary);
+    text-align: center;
+}
+
+.modal-body *{
+    margin: 5px 0;
+    text-align: center;
+}
+
+.modal-body > div > textarea {
+    padding: 5px;
+    background: var(--secondary);
+    border: none;
+    border-radius: 2px;
+    color: white;
+    min-width: 350px;
+    min-height: 100px;
+}
+
+.modal-body form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.details .basic .info .additional .quick-options div img{
     width: 75px;
 }
 
