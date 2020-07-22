@@ -53,7 +53,7 @@ class Tvshows extends React.Component {
             <div className="section">
                 <h1 className="section-title">{this.getSortName(this.props.match.params.sort)} Tv Shows</h1>
                 <div className="entries">
-                    {this.props.tvshows.entries && this.props.tvshows.entries.results.map(entry => {
+                    {this.props.tvshows && this.props.tvshows.entries.results.map(entry => {
                         return(
                         <div className="entry" key={entry.id}>
                             <Link to={`/details/tv/${entry.id}`} className="poster">
@@ -83,7 +83,7 @@ class Tvshows extends React.Component {
                         ?   null
                         :   <Link to={`/tvshows/${this.props.match.params.sort}/${this.props.match.params.page - 1}`}>previous</Link>
                     }
-                    {this.props.tvshows.entries && this.props.match.params.page >= this.props.tvshows.entries.total_pages
+                    {this.props.tvshows && this.props.match.params.page >= this.props.tvshows.entries.total_pages
                         ?   null
                         :   <Link to={`/tvshows/${this.props.match.params.sort}/${Number(this.props.match.params.page) + 1}`}>next</Link>
                     }

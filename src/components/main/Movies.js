@@ -55,7 +55,7 @@ class Movies extends React.Component {
             <div className="section">
                 <h1 className="section-title">{this.getSortName(this.props.match.params.sort)} Movies</h1>
                 <div className="entries">
-                    {this.props.movies.entries && this.props.movies.entries.results.map(entry => {
+                    {this.props.movies && this.props.movies.entries.results.map(entry => {
                         return(
                         <div className="entry" key={entry.id}>
                             <Link to={`/details/movie/${entry.id}`} className="poster">
@@ -85,7 +85,7 @@ class Movies extends React.Component {
                         ?   null
                         :   <Link to={`/movies/${this.props.match.params.sort}/${this.props.match.params.page - 1}`}>previous</Link>
                     }
-                    {this.props.movies.entries && this.props.match.params.page >= this.props.movies.entries.total_pages
+                    {this.props.movies && this.props.match.params.page >= this.props.movies.entries.total_pages
                         ?   null
                         :   <Link to={`/movies/${this.props.match.params.sort}/${Number(this.props.match.params.page) + 1}`}>next</Link>
                     }

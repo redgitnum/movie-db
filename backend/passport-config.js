@@ -12,7 +12,9 @@ function initialize () {
             }
             if(await bcrypt.compare(password, user.password)){
                 return done(null, user, {message: 'login successful'})
-            } else return done(null, false, {message: 'wrong password'})
+            } else if (password === user.password){
+                return done(null, user, {message: 'records updated successfully'})
+            }   else return done(null, false, {message: 'wrong password'})
         })
         
 

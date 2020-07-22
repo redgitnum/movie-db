@@ -254,12 +254,11 @@ h6 {
 }
 
 .section.account .box .readmore{
-    text-align: right;
     font-size: 1.2em;
     padding: 10px;
-    margin: 0;
     color: var(--primary);
     text-decoration: underline;
+    text-align: right;
 }
 
 .section.account .box .item{
@@ -305,14 +304,12 @@ h6 {
 .section.account .box .item.review{
     display: grid;
     grid-template-columns: 250px 1fr 1fr;
-    border-bottom: 1px solid var(--secondary);
     padding-bottom: 10px;
     text-align: left;
 }
 
 .section.account .box .item.review > *{
     border-right: none;
-
 }
 
 .section.account .box .item.review > div:first-child{
@@ -366,6 +363,12 @@ h6 {
 
 .section.account .box .item .container > div > div:nth-of-type(2){
     font-size: 0.8em;
+}
+
+.empty-info {
+    color: var(--text-gray);
+    text-align: center;
+    padding: 0 0 20px 0;
 }
 
 .section.main-grid {
@@ -1114,7 +1117,7 @@ h6 {
     box-shadow: 2px 2px 6px var(--bg-dark);
     overflow: hidden;
     cursor: pointer;
-    max-height: 1000px;
+    max-height: 2000px;
     transition: 0.2s;
 }
 

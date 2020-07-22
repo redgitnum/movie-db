@@ -17,6 +17,8 @@ const userSchema = new mongoose.Schema({
         ratings: [
             {
                 id: String,
+                thumbnailImage: String,
+                title: String,
                 rating: String,
                 media: String
             }
@@ -24,6 +26,8 @@ const userSchema = new mongoose.Schema({
         reviews: [
             {
                 id: String,
+                thumbnailImage: String,
+                title: String,
                 review: String,
                 media: String
             }
@@ -31,6 +35,8 @@ const userSchema = new mongoose.Schema({
         watchlist: [
             {
                 id: String,
+                thumbnailImage: String,
+                title: String,
                 media: String
             }
         ]

@@ -42,7 +42,7 @@ class AccountPage extends React.Component {
                     <div className="item">
                         <div>
                             <h6>Movies</h6>
-                            <p>rated: 15</p>
+                            <p>rated: {this.props.user.records.ratings.length}</p>
                             <p>reviews: 50</p>
                             <p>on watchlist: 5</p>
                         </div>
@@ -61,9 +61,10 @@ class AccountPage extends React.Component {
                         <button type='submit'>change password</button>
                     </form>
                 </div>
-                {this.props.user.reviews && 
+                 
                     <div className="box">
                         <h5>Latest review:</h5>
+                        {this.props.user.reviews ?
                         <div className="item review">
                             <div>
                                 <img alt='' src={mini_place} />
@@ -72,15 +73,18 @@ class AccountPage extends React.Component {
                                 <h6>Terminator salvation</h6>
                                 <div>rating: 8</div>
                                 <div>dwajdwakdbawnl</div>
+                                <div className="readmore">Read more...</div>
                             </div>
                         </div>
-                        <div className="readmore">Read more...</div>
+                        : <div className='empty-info'>---write up your first review to see this---</div>
+                        }
                     </div>
-                }
                 
-                {this.props.user.ratings &&  
+                
+                  
                     <div className="box">
                         <h5>Latest movie ratings:</h5>
+                        {this.props.user.ratings ?
                         <div className="item">
                             <div className='container'>
                                 <img alt='' src={mini_place} />
@@ -125,11 +129,14 @@ class AccountPage extends React.Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                }
-                {this.props.user.ratings && 
+                        : <div className='empty-info'>---rate your first movie to see this---</div>
+                        }
+                    </div> 
+                    
+                
                     <div className="box">
                         <h5>Latest tv show ratings:</h5>
+                        {this.props.user.ratings ?
                         <div className="item">
                             <div className='container'>
                                 <img alt='' src={mini_place} />
@@ -174,8 +181,9 @@ class AccountPage extends React.Component {
                                 </div>
                             </div>
                         </div>
+                        : <div className='empty-info'>---rate your first tv show to see this---</div>
+                    }
                     </div>
-                }
             </div>
         )
     }

@@ -12,11 +12,12 @@ export function* fetchUser(action) {
         username: action.payload.username,
         password: action.payload.password
     })).then(res => {
+        console.log(res.data)
         localStorage.setItem('user', JSON.stringify(res.data))
         return res.data
     })
     .catch(error => error.response.data)
-
+    
     yield put({type: RETURN_USER, payload: result})
 }
 

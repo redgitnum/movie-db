@@ -43,7 +43,7 @@ class People extends React.Component {
             <div className="section">
                 <h1 className="section-title">Popular People</h1>
                 <div className="people">
-                    {this.props.people.entries && this.props.people.entries.results.map(entry => {
+                    {this.props.people && this.props.people.entries.results.map(entry => {
                         return(
                         <div className="person" key={entry.id}>
                             <Link to={`/details/person/${entry.id}`}>

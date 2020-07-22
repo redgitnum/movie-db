@@ -5,10 +5,15 @@ import add_watchlist from '../../../../assets/add_watchlist.svg';
 import add_favourite from '../../../../assets/add_favourite.svg';
 import placeholder from '../../../../assets/placeholder.svg';
 import { connect } from 'react-redux';
+import { fetchUser } from '../../../../actions';
+
 import axios from 'axios';
 import qs from 'qs';
 
 const mapStateToProps = state => state;
+const mapDispatchToProps = {
+    fetchUser
+  };
 
 
 
@@ -34,12 +39,17 @@ class Basic extends React.Component {
         let entryType = this.props.details.entry.release_date ? 'movie': 'tv'
         axios.post('/user/update/records', qs.stringify({
             mediaId: this.props.details.entry.id,
+            thumbnailImage: this.props.details.entry.poster_path,
+            title: this.props.details.entry.name || this.props.details.entry.original_title,
             entryType: entryType,
             dataType: dataType, 
             data: data, 
             username: this.props.user.username}))
-        .then(res => console.log(res.data))
-        .then(this.hideModal('modal-box'))
+        .then(async res => {
+            alert(res.data)
+            this.hideModal('modal-box')
+            await this.props.fetchUser(this.props.user.username, this.props.user.password)
+        })
     }
 
     Modal = () => {
@@ -202,4 +212,4 @@ class Basic extends React.Component {
 }
 
 
-export default connect(mapStateToProps)(Basic)
+export default connect(mapStateToProps, mapDispatchToProps)(Basic)
