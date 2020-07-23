@@ -14,6 +14,7 @@ class Login extends React.Component {
         .then(res => {
             localStorage.clear()
             this.setState({logged: false})
+            alert(res.data)
             window.location.reload(false)
         })
     }

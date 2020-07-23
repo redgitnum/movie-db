@@ -17,7 +17,8 @@ class LoginPage extends React.Component {
 
     authLogin = async (e) => {
         e.preventDefault();
-        this.props.fetchUser(e.target.username.value, e.target.password.value)
+        await this.props.fetchUser(e.target.username.value, e.target.password.value);
+        
     }
 
     render() {

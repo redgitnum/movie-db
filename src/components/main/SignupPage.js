@@ -27,15 +27,15 @@ class SignupPage extends React.Component {
                 password: hashedPassword
             })).then(response => {
                 if(response.data.success){
-                    console.log(response.data.message)
+                    alert(response.data.message)
                     this.setState({registered: true})
                 } else {
-                    console.log(response.data.message)
+                    alert(response.data.message)
                     form.reset()
                 }
             })
         } else {
-            alert('passwords do not match');
+            alert('Passwords do not match');
             form.reset()
         }
         

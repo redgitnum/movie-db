@@ -28,10 +28,8 @@ const mapStateToProps = state => state;
 
 
 class App extends React.Component {
-
-
 render() {
-  return (
+    return (
     <Router>
       <div className="App">
         <Header />

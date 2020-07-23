@@ -50,16 +50,16 @@ app.post('/user/register', (req, res) => {
             let newUserData = {username, password}
             let newUser = new User(newUserData);
             newUser.save()
-            return res.send({message: 'register successful', success: true})
+            return res.send({message: 'Registered successfully', success: true})
         } else {
-            return res.send({message: 'username already exists', success: false})
+            return res.send({message: 'Username already exists', success: false})
         }
     })
 })
 
 app.post('/user/logout', (req, res) => {
     req.logOut()
-    res.send('logged out')
+    res.send('Logged out successfully')
 })
 
 app.post('/user/update', (req, res) => {
@@ -69,9 +69,9 @@ app.post('/user/update', (req, res) => {
             user.password = await bcrypt.hash(req.body.new_password, 10)
             await user.save()
             return res.send('update complete')
-        }
-        return res.send('update failed')
+        } else return res.send('update failed')
     }).catch(e => console.log(e))
+    
 })
 
 app.post('/user/update/records', async (req, res) => res.send( await updateRecords(req)))

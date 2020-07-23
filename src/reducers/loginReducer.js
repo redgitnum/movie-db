@@ -6,16 +6,8 @@ export default function(state = JSON.parse(localStorage.getItem('user')) || 0, a
     switch(action.type){
         case RETURN_USER:
             window.location.reload(false)
-            if(action.payload === 'Unauthorized') {
-                return {
-                    ...state,
-                    logged: false,
-                    user: 'error'
-                }
-            }
             return {
                 ...state,
-                logged: true,
                 user: action.payload
             }
         default:

@@ -246,19 +246,12 @@ h6 {
 
 .section.account .box{
     flex: 1 0 550px;
+    max-width: 800px;
     background: var(--bg-light);
     margin: 20px;
     padding: 5px 25px;
     border-radius: 45px;
     border: 2px solid var(--secondary);
-}
-
-.section.account .box .readmore{
-    font-size: 1.2em;
-    padding: 10px;
-    color: var(--primary);
-    text-decoration: underline;
-    text-align: right;
 }
 
 .section.account .box .item{
@@ -281,7 +274,7 @@ h6 {
     color: white;
 }
 
-.section.account .box .item > *:nth-child(2n + 1){
+.section.account .box .item > *:nth-child(2n + 1):not(a){
     border-right: 1px solid var(--secondary);
 }
 
@@ -312,10 +305,6 @@ h6 {
     border-right: none;
 }
 
-.section.account .box .item.review > div:first-child{
-    grid-column: 1/2;
-}
-
 .section.account .box .item.review > div:first-child img{
     object-fit: contain;
     width: 250px;
@@ -324,16 +313,17 @@ h6 {
 .section.account .box .item.review > div:last-child{
     grid-column: 2/4;
     margin-left: 15px;
+    
 }
 
-.section.account .box .item.review > div:last-child > div:first-of-type{
-    font-size: 1.3em;
+.section.account .box .item.review > div:last-child h6{
+    margin: 0;   
 }
 
 .section.account .box .item.review > div:last-child > div:last-of-type{
     margin: 15px 0;
     font-size: 1.0em;
-    color: var(--secondary);
+    color: var(--text-gray);
     font-weight: 100;
 }
 
@@ -349,7 +339,7 @@ h6 {
 .section.account .box .item .container img{
     object-fit: contain;
     margin: 2px;
-    width: 50px;
+    height: 70px;
 }
 
 .section.account .box .item .container > div{
@@ -358,11 +348,106 @@ h6 {
     justify-content: space-between;
     align-items: flex-start;
     margin: 10px 0 10px 15px;
-    font-size: 1.2em;
+    font-size: 0.9em;
 }
 
 .section.account .box .item .container > div > div:nth-of-type(2){
     font-size: 0.8em;
+}
+
+.section.account .box.full{
+    flex: 1 1 800px;
+}
+
+.section.account .box.full .entry-list{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin-bottom: 15px;  
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.section.account .box.full .entry-list .review-navigation{
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: rgba(0,0,0,0.2);
+    padding: 2px;
+    height: 50px;
+    border-radius: 2px;
+    overflow: hidden;
+    font-size: 1.3em;
+}
+
+.section.account .box.full .entry-list .review-navigation > img{
+    height: 50px;
+}
+
+.section.account .box.full .entry-list .review-navigation > div:nth-child(2){
+    flex: 1;
+    margin-left: 15px;
+}
+
+.section.account .box.full .entry-list .review-navigation > div:nth-child(3){
+    font-size: 0.9em;
+    background: rgba(255,255,255,.10);
+    position: absolute;
+    right: 0;
+    padding: 20px;
+    text-align: center;
+    margin-right: auto;
+    transition: 0.3s;
+    color: var(--text-gray);
+}
+
+.section.account .box.full .entry-list .review-navigation:hover > div:nth-child(3){
+    background: rgba(255,255,255,.25);
+    padding: 30px;
+}
+
+.section.account .box.full .entry-list .review-text{
+    color: var(--text-gray);
+    max-height: 0px;
+    display: block;
+    transition: 0.1s;
+}
+
+.section.account .box.full .entry-list .review-text.show-review{
+    max-height: 300px;
+}
+
+.section.account .box.full .entry-list .container{
+    display: flex;
+    align-items: center;
+    background-color: rgba(0,0,0,0.2);
+    margin-bottom: 3px;
+    padding: 2px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 2px;
+    font-size: 1.3em;
+}
+
+.section.account .box.full .entry-list .container img{
+    height: 50px;
+}
+
+.section.account .box.full .entry-list .container > div:nth-child(2){
+    margin-left: 15px;
+}
+
+.section.account .box.full .entry-list .container > div:nth-child(3){
+    flex: 1;
+    margin-right: 15px;
+    text-align: right;
+}
+
+.section.account .box.full .entry-list .container > div:nth-child(4){
+    flex: 0 0 50px;
+    margin-right: 15px;
+    font-size: 1.4em;
+    text-align: center;
 }
 
 .empty-info {

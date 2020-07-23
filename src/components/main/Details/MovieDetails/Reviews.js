@@ -5,6 +5,7 @@ class Reviews extends React.Component {
     toggleReview = (e) => {
         if(e.target.classList.contains('review')){
             e.target.classList.toggle('hide')
+            
         }
         else {
             e.target.parentNode.classList.toggle('hide')
