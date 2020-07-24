@@ -250,7 +250,7 @@ h6 {
     background: var(--bg-light);
     margin: 20px;
     padding: 5px 25px;
-    border-radius: 45px;
+    border-radius: 5px;
     border: 2px solid var(--secondary);
 }
 
@@ -301,13 +301,14 @@ h6 {
     text-align: left;
 }
 
-.section.account .box .item.review > *{
+.section.account .box .item.review > div{
     border-right: none;
 }
 
 .section.account .box .item.review > div:first-child img{
     object-fit: contain;
     width: 250px;
+    padding-top: 50px;
 }
 
 .section.account .box .item.review > div:last-child{
@@ -374,7 +375,6 @@ h6 {
     position: relative;
     background-color: rgba(0,0,0,0.2);
     padding: 2px;
-    height: 50px;
     border-radius: 2px;
     overflow: hidden;
     font-size: 1.3em;
@@ -409,12 +409,14 @@ h6 {
 .section.account .box.full .entry-list .review-text{
     color: var(--text-gray);
     max-height: 0px;
-    display: block;
-    transition: 0.1s;
+    display: none;
 }
 
 .section.account .box.full .entry-list .review-text.show-review{
-    max-height: 300px;
+    max-height: 900px;
+    padding: 10px 10px 10px 40px;
+    font-size: 0.9em;
+    display: block;
 }
 
 .section.account .box.full .entry-list .container{
@@ -427,6 +429,11 @@ h6 {
     overflow: hidden;
     border-radius: 2px;
     font-size: 1.3em;
+    transition: 0.3s;
+}
+
+.section.account .box.full .entry-list .container:hover{
+    background: rgba(0,0,0,0.1);
 }
 
 .section.account .box.full .entry-list .container img{
@@ -1628,6 +1635,25 @@ button[type=submit]:hover {
 .footer {
     height: 30px;
     /* background: var(--bg-light); */
+}
+
+
+.disabled {
+    background: var(--text-gray) !important;
+    color: black !important;
+    border: 0 !important;
+    text-decoration: line-through !important;
+}
+
+.demo-box {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    width: 250px;
+    text-align: center;
+    background: var(--bg-dark);
+    padding: 5px;
+    border: 2px solid green;
 }
 
 

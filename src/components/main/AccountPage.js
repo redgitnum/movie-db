@@ -33,7 +33,7 @@ class AccountPage extends React.Component {
 
     populateLatestRatings = (type) => {
         let latestRatings = this.props.user.records.ratings.filter(entry => entry.media === type);
-        let ratingsLength = latestRatings.length < 7 ? 0 : latestRatings.length - 7
+        let ratingsLength = latestRatings.length < 7 ? 0 : latestRatings.length - 6
         let result = [];
         for(let i = latestRatings.length-1; i > ratingsLength-1; i--){
             result.push(
@@ -87,9 +87,41 @@ class AccountPage extends React.Component {
                 reviewText.classList.toggle('show-review')
             }
         }
+    }
 
-        
-        
+    populateReviews = (type) => {
+        let reviews = this.props.user.records.reviews.filter(entry => entry.media === type);
+        let result = [];
+        for(let i = reviews.length-1; i >= 0; i--){
+            result.push(
+                <div className='entry-list' onClick={this.showReview}>
+                    <div className='review-navigation'>
+                        <img alt="" src={"https://image.tmdb.org/t/p/w92" + reviews[i].thumbnailImage }></img>
+                        <div>{reviews[i].title}</div>
+                        <div>Click to read</div>
+                    </div>
+                    <div className='review-text'>
+                        {reviews[i].review}
+                    </div>
+                </div>
+                )
+        }
+        return result
+    }
+
+    populateWatchlist = () => {
+        let watchlist = this.props.user.records.watchlist;
+        let result = [];
+        for(let i = watchlist.length-1; i >= 0; i--){
+            result.push(
+                <Link to={`/details/${watchlist[i].media}/${watchlist[i].id}`} className='container' key={watchlist[i].id}>
+                    <img alt="" src={"https://image.tmdb.org/t/p/w92" + watchlist[i].thumbnailImage }></img>
+                    <div>{watchlist[i].title}</div>
+                    <div>{watchlist[i].media ==='tv' ? 'tv show' : 'movie'}</div>
+                </Link>
+                )
+        }
+    return <div className='entry-list'>{result}</div>
     }
 
     render() {
@@ -118,10 +150,10 @@ class AccountPage extends React.Component {
                 </div>
                 <form onSubmit={this.updatePassword} className="item">
                     <label htmlFor='password'>password</label>
-                    <input type='password' name='password' minLength='3'/>
+                    <input required type='password' name='password' minLength='3'/>
                     <label htmlFor='new_password'>new password</label>
-                    <input type='password' name='new_password' minLength='5'/>
-                    <button type='submit'>change password</button>
+                    <input required type='password' placeholder={this.props.user.username ==='demo1' ? 'not available on demo account' : null} style={{color: 'black', fontWeight: 'bold'}} name='new_password'  disabled={this.props.user.username ==='demo1' ? true : false} minLength='5'/>
+                    <button type='submit' className={this.props.user.username ==='demo1' ? 'disabled' : null} disabled={this.props.user.username ==='demo1' ? true : false}>change password</button>
                 </form>
             </div>
                 
@@ -154,7 +186,7 @@ class AccountPage extends React.Component {
 
             <div className="box full">
                 <h5>Movie ratings: </h5>
-                {this.props.user.records.ratings ?
+                {this.props.user.records.ratings.filter(entry => entry.media === 'movie').length ?
                     this.populateRatings('movie') :
                     <div className='empty-info'>---rate your first movie to see this---</div>
                 }
@@ -162,7 +194,7 @@ class AccountPage extends React.Component {
 
             <div className="box full">
                 <h5>Tv shows ratings:</h5>
-                {this.props.user.records.ratings ?
+                {this.props.user.records.ratings.filter(entry => entry.media === 'tv').length ?
                     this.populateRatings('tv') :
                     <div className='empty-info'>---rate your first tv show to see this---</div>
                 }
@@ -170,30 +202,25 @@ class AccountPage extends React.Component {
 
             <div className="box full">
                 <h5>Movie reviews:</h5>
-                <div className='entry-list' onClick={this.showReview}>
-                    <div className='review-navigation'>
-                        <img alt="" src={"https://image.tmdb.org/t/p/w92" + this.props.user.records.reviews[0].thumbnailImage }></img>
-                        <div>{this.props.user.records.reviews[0].title}</div>
-                        <div>Click to read</div>
-                    </div>
-                    <div className='review-text'>
-                        {this.props.user.records.reviews[0].review}
-                    </div>
-                </div>
-                <div className='entry-list' onClick={this.showReview}>
-                    <div className='review-navigation'>
-                        <img alt="" src={"https://image.tmdb.org/t/p/w92" + this.props.user.records.reviews[0].thumbnailImage }></img>
-                        <div>{this.props.user.records.reviews[0].title}</div>
-                        <div>Click to read</div>
-                    </div>
-                    <div className='review-text'>
-                        {this.props.user.records.reviews[0].review}
-                    </div>
-                </div>
+                {this.props.user.records.reviews.filter(entry => entry.media === 'movie').length ?
+                    this.populateReviews('movie') :
+                    <div className='empty-info'>---review your first movie to see this---</div>
+                }
             </div>
 
             <div className="box full">
                 <h5>Tv shows reviews:</h5>
+                {this.props.user.records.reviews.filter(entry => entry.media === 'tv').length ?
+                    this.populateReviews('tv') :
+                    <div className='empty-info'>---review your first tv show to see this---</div>
+                }
+            </div>
+            <div className="box full">
+                <h5>Watchlist:</h5>
+                {this.props.user.records.watchlist.length ?
+                    this.populateWatchlist() :
+                    <div className='empty-info'>---add any movie or tv show to watchlist to see this---</div>
+                }
             </div>
         
 

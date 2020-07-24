@@ -40,7 +40,7 @@ class Basic extends React.Component {
         axios.post('/user/update/records', qs.stringify({
             mediaId: this.props.details.entry.id,
             thumbnailImage: this.props.details.entry.poster_path,
-            title: this.props.details.entry.name || this.props.details.entry.original_title,
+            title: this.props.details.entry.name || this.props.details.entry.title,
             entryType: entryType,
             dataType: dataType, 
             data: data, 

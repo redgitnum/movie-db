@@ -35,6 +35,7 @@ class MovieDetails extends React.Component{
     }
 
     render(){
+        console.log(this.props.details)
         return(
             <div className="details">
                 {this.props.details.entry ? 

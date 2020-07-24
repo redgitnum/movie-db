@@ -35,6 +35,11 @@ class LoginPage extends React.Component {
                     </div>
                     <button type="submit">LOGIN</button>
                 </form>
+                <div className='demo-box'>
+                    <div>Demo account credensials:</div>
+                    <div>username: demo1</div>
+                    <div>password: 12345</div>
+                </div>
                 <h2>or <Link to="/signup">Sign up</Link> to be able to:</h2>
                 <div className="benefits">
                     <p>Rate movies and tv shows</p>

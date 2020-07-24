@@ -32,46 +32,94 @@ class Extra extends React.Component {
                             </a>
                         </div>}
                     </div>
-                    <div className="budget">
-                        <div className='title'>
-                            Budget:
+                    {this.props.details.entry.first_air_date &&
+                    <>
+                        <div className="budget">
+                            <div className='title'>
+                                Number of episodes:
+                            </div>
+                            <div className='value'>
+                                {this.props.details.entry.number_of_episodes}
+                            </div>
                         </div>
-                        <div className='value'>
-                            {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(this.props.details.entry.budget)}
+                        <div className="revenue">
+                            <div className='title'>
+                                Seasons:
+                            </div>
+                            <div className='value'>
+                            {this.props.details.entry.number_of_seasons}
+                            </div>
                         </div>
-                    </div>
-                    <div className="revenue">
-                        <div className='title'>
-                            Revenue:
+                        <div className="og-lang">
+                            <div className='title'>
+                                Original language:
+                            </div>
+                            <div className='value'>
+                                {this.props.details.entry.original_language}
+                            </div>
                         </div>
-                        <div className='value'>
-                            {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(this.props.details.entry.revenue)}
+                        <div className="og-title">
+                            <div className='title'>
+                                Status:
+                            </div>
+                            <div className='value'>
+                                {this.props.details.entry.status}
+                            </div>
                         </div>
-                    </div>
-                    <div className="og-lang">
-                        <div className='title'>
-                            Original language:
+                        <div className="runtime">
+                            <div className='title'>
+                                Episode runtime:
+                            </div>
+                            <div className='value'>
+                                {this.props.details.entry.episode_run_time.join('m, ')}m
+                            </div>
                         </div>
-                        <div className='value'>
-                            {this.props.details.entry.original_language}
+                    </>
+                    }
+                    {this.props.details.entry.release_date &&
+                    <>
+                        <div className="budget">
+                            <div className='title'>
+                                Budget:
+                            </div>
+                            <div className='value'>
+                                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(this.props.details.entry.budget)}
+                            </div>
                         </div>
-                    </div>
-                    <div className="og-title">
-                        <div className='title'>
-                            Original title:
+                        <div className="revenue">
+                            <div className='title'>
+                                Revenue:
+                            </div>
+                            <div className='value'>
+                                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(this.props.details.entry.revenue)}
+                            </div>
                         </div>
-                        <div className='value'>
-                            {this.props.details.entry.original_title}
+                        <div className="og-lang">
+                            <div className='title'>
+                                Original language:
+                            </div>
+                            <div className='value'>
+                                {this.props.details.entry.original_language}
+                            </div>
                         </div>
-                    </div>
-                    <div className="runtime">
-                        <div className='title'>
-                            Runtime:
+                        <div className="og-title">
+                            <div className='title'>
+                                Original title:
+                            </div>
+                            <div className='value'>
+                                {this.props.details.entry.original_title}
+                            </div>
                         </div>
-                        <div className='value'>
-                            {Math.floor(this.props.details.entry.runtime/60)}h {this.props.details.entry.runtime%60}m
+                        <div className="runtime">
+                            <div className='title'>
+                                Runtime:
+                            </div>
+                            <div className='value'>
+                                {Math.floor(this.props.details.entry.runtime/60)}h {this.props.details.entry.runtime%60}m
+                            </div>
                         </div>
-                    </div>
+                    </>
+                    }
                 </div>
                 <div className='cast'>
                     <div>Top billed Cast</div>
