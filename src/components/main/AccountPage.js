@@ -94,7 +94,7 @@ class AccountPage extends React.Component {
         let result = [];
         for(let i = reviews.length-1; i >= 0; i--){
             result.push(
-                <div className='entry-list' onClick={this.showReview}>
+                <div className='entry-list' onClick={this.showReview} key={reviews[i].id}>
                     <div className='review-navigation'>
                         <img alt="" src={"https://image.tmdb.org/t/p/w92" + reviews[i].thumbnailImage }></img>
                         <div>{reviews[i].title}</div>

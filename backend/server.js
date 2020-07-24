@@ -36,6 +36,10 @@ initializePassport()
 
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true},  () => console.log('MongoDb connected...'))
 
+app.get('/', (req, res) => {
+    res.send('hello')
+})
+
 app.post('/user/login', passport.authenticate('local', {
     successFlash: true,
     failureFlash: true
@@ -77,4 +81,4 @@ app.post('/user/update', (req, res) => {
 app.post('/user/update/records', async (req, res) => res.send( await updateRecords(req)))
 
 
-app.listen(5000, () => console.log('app running on port 5000...'))
+app.listen(process.env.PORT || 5000, () => console.log('app running on port 5000...'))
