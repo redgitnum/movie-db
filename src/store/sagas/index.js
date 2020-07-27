@@ -6,6 +6,7 @@ import { watchDiscover, watchKeywords } from './discoverSagas';
 import { watchSearch } from './searchSagas';
 import { watchDetails } from './detailsSagas';
 import { watchUser } from './loginSagas';
+export const API_KEY = 'e53a6547ceb8767ac7d61c1c8dd9f879'
 
 export default function* rootSaga() {
     yield all([

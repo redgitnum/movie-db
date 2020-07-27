@@ -14,10 +14,9 @@ class Navigation extends React.Component {
             this.props.history.replace(`/search/${e.target.value.trim().split(/\s+/).join('%20')}`)
             e.target.value = ''
         }
-
     }
-    render() {
 
+    render() {
         return(
             <div className="nav">
                 <ul className="navbar">

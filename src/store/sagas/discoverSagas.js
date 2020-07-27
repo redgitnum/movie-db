@@ -2,7 +2,7 @@ import { put, takeLatest, delay } from 'redux-saga/effects';
 import { 
     FETCH_DISCOVER, RETURN_DISCOVER,
     FETCH_KEYWORDS, RETURN_KEYWORDS } from '../../actions/actionTypes';
-import { API_KEY } from '../../keys'
+import { API_KEY } from './index'
 import axios from 'axios';
 
 function* fetchDiscover(action) {

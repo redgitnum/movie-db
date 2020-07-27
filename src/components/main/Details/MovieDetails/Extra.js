@@ -137,10 +137,6 @@ class Extra extends React.Component {
                             return null
                             
                         })}
-                        <div>
-                            <div>&#187;</div>
-                            <div>Full cast & crew</div>
-                        </div>
                     </div>
                 </div>
             </div>

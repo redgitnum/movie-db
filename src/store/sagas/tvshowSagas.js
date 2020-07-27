@@ -1,6 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import { FETCH_TVSHOWS, RETURN_TVSHOWS } from '../../actions/actionTypes';
-import { API_KEY } from '../../keys'
+import { API_KEY } from './index'
 
 import axios from 'axios';
 

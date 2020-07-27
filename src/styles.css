@@ -61,12 +61,12 @@ h6 {
     display: flex;
     background: var(--bg-light);
     padding: 10px 20px;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .logo {
-    flex: 1;
-    text-align: right;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 .nav {
     flex: 1;
@@ -78,21 +78,23 @@ h6 {
     list-style-type: none;
     padding: 0;
     display: flex;
-    align-self: center;
+    justify-content: center;
+    column-gap: 15px;
+    flex-wrap: wrap;
 }
 
 .navbar li {
     display: flex;
-    flex-direction: column;
     text-decoration: none;
+    white-space: nowrap;
 }
 
 
 .nav-container{
-    display: flex;
-    flex-direction: column;
+    flex: 1;
     text-decoration: none;
     position: relative;
+    margin: 5px;
 }
 
 .main-link {
@@ -100,7 +102,6 @@ h6 {
     display: flex;
     align-items: flex-start;
     text-decoration: none;
-    padding: 5px 20px;
 }
 
 .main-link img {
@@ -116,10 +117,11 @@ h6 {
     display: none;
     flex-direction: column;
     position: absolute;
+    top: 0;
     width: 100%;
     z-index: 1;
     text-decoration: none;
-    row-gap: 2px;
+    row-gap: 1px;
 }
 
 .nav-container:hover .menu .nav-sort{
@@ -132,9 +134,9 @@ h6 {
     color: var(--text-gray);
     font-weight: 600;
     background-color: var(--bg-light);
-    box-shadow: 0px 0px 2px 2px var(--text-gray);
-    border-radius: 50px;
+    border-radius: 4px;
     padding: 10px 15px 10px 10px;
+    border: 1px solid var(--text-gray);
 }
 
 .nav-sort *:hover{
@@ -150,11 +152,13 @@ h6 {
 
 .searchbar {
     align-self: center;
-    margin: auto 0;
+    width: 100%;
+    max-width: 580px;
+    margin-right: 50px;
 }
 
 .searchbar input {
-    width: 700px;
+    width: 100%;
     border: none;
     padding: 8px 16px;
     border-radius: 20px;
@@ -206,7 +210,6 @@ h6 {
 }
 
 .login {
-    flex: 1 1;
     align-self: center;
     line-height: 2em;
 }
@@ -801,7 +804,7 @@ h6 {
     flex: 1;
     max-width: 400px;
     min-width: 200px;
-    margin-right: 100px;
+    margin-right: 20px;
 }
 
 .details .basic .poster img{
@@ -811,14 +814,13 @@ h6 {
 .details .basic .poster.face{
     flex: 1;
     max-width: 300px;
-    margin-right: 100px;
+    margin-right: 20px;
 }
 
 .details .basic .info{
     flex: 1;
-    width: 100%;
-    min-width: 300px;
     max-width: 600px;
+    margin-right: 25px;
     position: relative;
 }
 
@@ -869,14 +871,15 @@ h6 {
     content: '.';
 }
 
-.details .basic .info .additional,
-.details .basic .info .additional .rating {
+.details .basic .info .additional {
     display: flex;
-    align-items: center;
+    column-gap: 20px;
+    
 }
 
 .details .basic .info .additional .rating{
-    flex: 1;
+    display: flex;
+    align-items: center;
 }
 
 .details .basic .info .additional .rating .value{
@@ -904,8 +907,6 @@ h6 {
 
 .details .basic .info .additional .quick-options {
     display: flex;
-    flex: 1;
-    justify-content: space-around;
 }
 
 .details .basic .info .additional .quick-options div {
@@ -1050,7 +1051,7 @@ h6 {
 
 .details .extra {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 0.3fr 1fr;
     background: var(--bg-light);
     padding-bottom: 10px;
 }
@@ -1059,6 +1060,7 @@ h6 {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    margin-left: 10px;
 }
 
 .details .extra .facts .links{
@@ -1124,38 +1126,20 @@ h6 {
     padding: 20px 0 0 40px;
 }
 
-.details .extra .cast .top-cast{
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    padding: 20px 40px;
-    
-}
-
-.details .extra .cast .top-cast > div{
+.details .extra .cast{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    grid-column: span 2;
-    font-size: 1.4em;
-    margin-left: 20px;
-    cursor: pointer;
-    user-select: none;
-    width: 100px;
 }
 
-.details .extra .cast .top-cast > div:hover div:first-of-type{
-    transform: scale(1.2);
-}
-
-.details .extra .cast .top-cast > div div:first-of-type{
-    transition: 0.3s;
-    font-size: 3em;
-    text-align: center;
+.details .extra .cast .top-cast{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
 }
 
 .details .extra .cast .top-cast .member{
+    width: 160px;
     margin: 0 5px;
-    width: 120px;
     box-shadow: 3px 3px 6px 2px rgba(0,0,0,0.3);
 }
 
@@ -1173,7 +1157,6 @@ h6 {
 
 .details .extra .cast .top-cast .member img{
     width: 100%;
-    max-height: 80%;
     object-fit: cover;
 }
 
@@ -1267,7 +1250,7 @@ h6 {
     background: var(--bg-light);
     margin-top: 5px;
     display: grid;
-    grid-template-columns: 0.8fr 1fr 0.8fr;
+    grid-template-columns: 0.1fr 1fr 0.1fr;
     width: 100%;
 }
 
@@ -1276,19 +1259,20 @@ h6 {
     margin-top: 20px;
     font-weight: 600;
     grid-column: 2/3;
-    width: 700px;
 }
 
 .details .media .container{
+    display: flex;
+    flex-direction: column;
     grid-column: 2/3;
-    max-width: 1000px;
+    overflow: auto;
 }
 
 .details .media .container .images,
 .details .media .container .videos{
+    flex: 1;
     display: flex;
     flex-direction: column;
-    min-width: 700px;
     background: rgba(255,255,255,.10);
     padding: 10px 20px;
     margin: 10px 0;
@@ -1308,7 +1292,7 @@ h6 {
 
 .details .media .container .images .content {
     display: flex;
-    overflow: auto;
+    overflow-x: auto;
     margin: 5px 0 10px;
     padding-bottom: 10px;
 }
@@ -1370,7 +1354,7 @@ h6 {
     background: var(--bg-light);
     margin-top: 5px;
     display: grid;
-    grid-template-columns: 0.8fr 1fr 0.8fr;
+    grid-template-columns: 0.1fr 1fr 0.1fr;
     width: 100%;
     padding-bottom: 15px;
 }
@@ -1381,12 +1365,12 @@ h6 {
     margin-top: 20px;
     font-weight: 600;
     grid-column: 2/3;
-    max-width: 1000px;
 }
 
 .details .recommended .content,
 .details .similar .content{
     display: flex;
+    justify-content: space-evenly;
     background: rgba(255,255,255,.10);
     padding: 10px 20px;
     margin: 10px 0;
@@ -1412,7 +1396,7 @@ h6 {
 
 .details .recommended .content > a img,
 .details .similar .content > a img{
-    width: 185px;
+    width: 100%;
     object-fit: contain;
 }
 

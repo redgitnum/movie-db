@@ -81,4 +81,4 @@ app.post('/user/update', (req, res) => {
 app.post('/user/update/records', async (req, res) => res.send( await updateRecords(req)))
 
 
-app.listen(process.env.PORT || 5000, () => console.log('app running on port 5000...'))
+app.listen(process.env.PORT, () => console.log('app running on port 5000...'))
