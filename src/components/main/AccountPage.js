@@ -48,7 +48,7 @@ class AccountPage extends React.Component {
                 </Link>
                 )
         }
-        return <div className="item">{result}</div>
+        return <div className="item ratings">{result}</div>
     }
 
     populateLatestReview = () => {

@@ -10,6 +10,7 @@ const mapDispatchToProps = {
 
 
 class LoginPage extends React.Component {
+    state = {loading: false}
 
     checkLogged = () => {
         return this.props.user.username ? <Redirect to='/'/> : null
@@ -17,13 +18,27 @@ class LoginPage extends React.Component {
 
     authLogin = async (e) => {
         e.preventDefault();
-        await this.props.fetchUser(e.target.username.value, e.target.password.value);
-        
+        this.setState({loading: true})
+        await this.props.fetchUser(e.target.username.value, e.target.password.value)
+        if(this.props.user){
+            this.setState({loading: false})
+        }
     }
 
+    loading = () => {
+        if(this.state.loading){
+            return (
+            <div className='loading-screen'>
+                <div className='placeholder-login'></div>
+            </div>
+            )
+        }
+    }
+    
     render() {
         return(
             <div className="section">
+                {this.loading()}
                 {this.checkLogged()}
                 <h1 className="section-title">Login to your account</h1>
                 <form onSubmit={this.authLogin} className="login-form">

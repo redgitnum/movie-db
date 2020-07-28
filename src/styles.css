@@ -80,7 +80,6 @@ h6 {
     display: flex;
     justify-content: center;
     column-gap: 15px;
-    flex-wrap: wrap;
 }
 
 .navbar li {
@@ -182,7 +181,7 @@ h6 {
 
 .search-results .category button{
     margin: 0 2px;
-    padding: 8px 20px;
+    padding: 8px 10px;
     font-size: 1.6em;
     color: var(--secondary);
     border: 1px solid var(--text-gray);
@@ -190,13 +189,13 @@ h6 {
 }
 
 .search-results .category button:first-of-type{
-    border-radius: 50px 0 0 50px;
-    padding-left: 30px;
+    border-radius: 15px 0 0 15px;
+    padding-left: 10px;
 }
 
 .search-results .category button:last-of-type{
-    border-radius: 0 50px 50px 0;
-    padding-right: 30px;
+    border-radius: 0 15px 15px 0;
+    padding-right: 10px;
 }
 
 .search-results .category button:hover{
@@ -241,6 +240,7 @@ h6 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    font-size: 0.9em;
 }
 
 .section.account .section-title{
@@ -248,7 +248,7 @@ h6 {
 }
 
 .section.account .box{
-    flex: 1 0 550px;
+    flex: 1 1 550px;
     max-width: 800px;
     background: var(--bg-light);
     margin: 20px;
@@ -302,6 +302,7 @@ h6 {
     grid-template-columns: 250px 1fr 1fr;
     padding-bottom: 10px;
     text-align: left;
+    
 }
 
 .section.account .box .item.review > div{
@@ -311,7 +312,7 @@ h6 {
 .section.account .box .item.review > div:first-child img{
     object-fit: contain;
     width: 250px;
-    padding-top: 50px;
+
 }
 
 .section.account .box .item.review > div:last-child{
@@ -370,6 +371,8 @@ h6 {
     margin-bottom: 15px;  
     cursor: pointer;
     overflow: hidden;
+    font-size: 0.8em;
+
 }
 
 .section.account .box.full .entry-list .review-navigation{
@@ -381,6 +384,7 @@ h6 {
     border-radius: 2px;
     overflow: hidden;
     font-size: 1.3em;
+    user-select: none;
 }
 
 .section.account .box.full .entry-list .review-navigation > img{
@@ -416,9 +420,9 @@ h6 {
 }
 
 .section.account .box.full .entry-list .review-text.show-review{
-    max-height: 900px;
+    max-height: 2000px;
     padding: 10px 10px 10px 40px;
-    font-size: 0.9em;
+    font-size: 1.1em;
     display: block;
 }
 
@@ -431,7 +435,7 @@ h6 {
     height: 50px;
     overflow: hidden;
     border-radius: 2px;
-    font-size: 1.3em;
+    font-size: 1.4em;
     transition: 0.3s;
 }
 
@@ -511,6 +515,7 @@ h6 {
     font-size: 1.4em;
     font-weight: 600;
     padding: 10px 10px;
+    white-space: nowrap;
 }
 
 .grid .thumbnails {
@@ -578,7 +583,6 @@ h6 {
 .people {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 100px;
     justify-content: center;
 }
 
@@ -628,6 +632,29 @@ h6 {
 .mini {
     width: 10px;
     height: 10px;
+}
+
+.loading-screen {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 100;
+}
+
+.placeholder-login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--bg-light);
+    border-top: 5px solid var(--secondary);
+    border-radius: 50%;
+    animation: loader 1s infinite linear;
 }
 
 @keyframes loader {
@@ -737,22 +764,16 @@ h6 {
 
 .entry .poster,
 .entry .info {
-    flex: 50%;
+    flex: 1;
     margin-right: 10px;
 }
 
 .entry h3 {
-    position: absolute;
-    bottom: 0;
-    right: 20px;
-    margin-bottom: 10px;
     padding: 0;
 }
 
 .entry .rating {
-    position: absolute;
-    bottom: 0;
-    font-size: 2em;
+    font-size: 1.8em;
     font-weight: 600;
     margin-bottom: 10px;
 }
@@ -803,7 +824,6 @@ h6 {
 .details .basic .poster{
     flex: 1;
     max-width: 400px;
-    min-width: 200px;
     margin-right: 20px;
 }
 
@@ -811,16 +831,9 @@ h6 {
     width: 100%;
 }
 
-.details .basic .poster.face{
-    flex: 1;
-    max-width: 300px;
-    margin-right: 20px;
-}
-
 .details .basic .info{
     flex: 1;
     max-width: 600px;
-    margin-right: 25px;
     position: relative;
 }
 
@@ -831,6 +844,7 @@ h6 {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2; 
+
 }
 
 .details .basic .info .year {
@@ -838,6 +852,7 @@ h6 {
     font-weight: 400;
     color: var(--text-gray);
     margin-bottom: 1em;
+
 }
 
 .details .basic .info .year .countries{
@@ -872,9 +887,7 @@ h6 {
 }
 
 .details .basic .info .additional {
-    display: flex;
-    column-gap: 20px;
-    
+    display: flex;    
 }
 
 .details .basic .info .additional .rating{
@@ -1054,6 +1067,7 @@ h6 {
     grid-template-columns: 0.3fr 1fr;
     background: var(--bg-light);
     padding-bottom: 10px;
+    
 }
 
 .details .extra .facts{
@@ -1138,7 +1152,7 @@ h6 {
 }
 
 .details .extra .cast .top-cast .member{
-    width: 160px;
+    width: 150px;
     margin: 0 5px;
     box-shadow: 3px 3px 6px 2px rgba(0,0,0,0.3);
 }
@@ -1163,7 +1177,7 @@ h6 {
 .details .reviews{
     background: var(--bg-light);
     display: grid;
-    grid-template-columns: 0.8fr 1fr 0.8fr;
+    grid-template-columns: 0.1fr 1fr 0.1fr;
     margin-top: 5px;
 }
 
@@ -1183,7 +1197,6 @@ h6 {
     position: relative;
     display: flex;
     flex-direction: column;
-    min-width: 700px;
     background: rgba(255,255,255,.15);
     padding: 10px 20px;
     margin: 10px 0;
@@ -1192,8 +1205,7 @@ h6 {
     box-shadow: 2px 2px 6px var(--bg-dark);
     overflow: hidden;
     cursor: pointer;
-    max-height: 2000px;
-    transition: 0.2s;
+    max-height: 5000px;
 }
 
 .details .reviews .container .review.hide{
@@ -1474,7 +1486,6 @@ h6 {
 
 .filter-item input{
     display: block;
-    width: 100%;
     height: 1.4em;
     font-size: 1.1em;
     color: var(--text-gray);
@@ -1640,6 +1651,236 @@ button[type=submit]:hover {
     border: 2px solid green;
 }
 
+.hamburger-menu,
+.hamburger-login {
+    display: none;
+}
+
+@media only screen and (max-width: 720px) {
+    .grid.half {
+        grid-column: span 2;
+    }
+    .details .basic {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .details .extra {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .details .basic .info .additional .quick-options div img {
+        width: 45px;
+    }
+
+    .details .extra .facts{
+        align-items: center;
+        margin-left: 0;
+    }
+
+    .details .extra .facts > div:nth-child(1n+2){
+        text-align: center;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
+
+    .section.account {
+        font-size: 0.9em;
+    }
+
+    .section.account .box .item.review{
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: none;
+    }
+
+    .section.account .box .item.review > div:first-child{
+        text-align: center;
+    }
+
+    .section.account .box .item.review > div:last-child{
+        margin-left: 0;
+    }
+
+    .section.account .box .item.ratings{
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: none;
+    }
+    
+    .section.account .box.full .entry-list .container{
+        font-size: 0.9em;
+    }
+
+    .section.account .box.full .entry-list .container > div:nth-child(2){
+        margin-left: 5px;
+    }
+    
+    .section.account .box.full .entry-list .container > div:nth-child(3){
+        margin-right: 8px;
+    }
+    
+    .section.account .box.full .entry-list .container > div:nth-child(4){
+        flex: 0 0 20px;
+        margin-right: 5px;
+    }
+
+    .section.account .box.full .entry-list .review-navigation{
+        padding: 2px;
+        border-radius: 2px;
+        overflow: hidden;
+        font-size: 1em;
+    }
+
+    .section.account .box.full .entry-list .review-text.show-review{
+        max-height: 2000px;
+        padding: 5px 5px;
+        font-size: 0.9em;
+        display: block;
+    }
+
+    .details .basic .info .additional .quick-options div:hover .quick-options-tip {
+        display: block;
+        position: absolute;
+        left: -25px;
+        top: 50px;
+        filter: none;
+    }
+
+}
+@media only screen and (max-width: 1024px) {
+    .login {
+        display: none;
+        font-size: 0.5em;
+    }
+
+    .login .links * {
+        width: auto;
+        text-align: center;
+        padding: 5px;
+        text-decoration: none;
+    }
+
+    .header {
+        padding: 0;
+    }
+
+    .nav {
+        margin-top: 0;
+        justify-content: flex-start;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .logo {
+        align-self: flex-start;
+        margin-right: 5px;
+    }
+
+    .logo img{
+        height: 80px;
+    }
+
+    .searchbar {
+        width: 100%;
+        max-width: auto;
+        margin-right: 0;
+    }
+
+    .searchbar input {
+        width: calc(100% - 18px);
+        padding: 0x;
+        border-radius: 0;
+        background: var(--bg-dark);
+        color: var(--text-gray);
+        font-size: 0.9em;
+    }
+
+    .hamburger-login{
+        align-self: stretch;
+        display: block;
+        border: 1px solid var(--secondary);
+        background: var(--bg-dark);
+        color: var(--text-gray);
+        font-weight: bold;
+        padding: 5px;
+        margin-right: 1px;
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+        cursor: pointer;
+        text-align: center;
+        font-size: 0.6em;
+    }
+
+    .hamburger-menu {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 10px 5px 10px 0;
+    }
+
+    .hamburger-icon {
+        min-width: 40px;
+        min-height: 40px;
+        background: linear-gradient(180deg, var(--secondary), 20%, var(--secondary), 20%, transparent, 40%, transparent, 40%, var(--secondary), 60%, var(--secondary), 60%, transparent, 80%, var(--secondary), 80%, var(--secondary));
+        transform: scaleY(0.8);
+        cursor: pointer;
+    }
+
+    .hamburger-list {
+        margin: 0;
+        padding: 0;
+        display: none;
+    }
+
+    .hamburger-item {
+        list-style-type: none;
+        margin-top: 10px;
+    }
+
+    .hamburger-title {
+        display: flex;
+        align-items: flex-start;
+        font-size: 1em;
+        font-weight: 600;
+        color: var(--text-gray);
+        padding: 0 3px;
+        cursor: pointer;
+    }
+
+    .hamburger-title img{
+        height: 25px;
+        margin-right: 10px;
+    }
+
+    .hamburger-expand {
+        display: flex;
+        list-style-type: none;
+        flex-wrap: wrap;
+        column-gap: 2px;
+    }
+
+    .hamburger-expand li {
+        color: var(--text-gray);
+        font-weight: 600;
+        border-radius: 4px;
+        padding: 2px 6px;
+        font-size: 0.8em;
+        border: 1px solid var(--text-gray);
+        white-space: nowrap;
+        margin-top: 5px;
+    }
+
+    .show {
+        display: block;
+    }
+  }
 
 @keyframes fade-in {
     to{

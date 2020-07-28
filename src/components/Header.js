@@ -7,6 +7,11 @@ import { Link } from "react-router-dom";
 
 
 class Header extends React.Component {
+
+    showLogin = (e) => {
+        e.target.nextSibling.classList.toggle('show')
+
+    }
     
     render() {
         return(
@@ -15,6 +20,7 @@ class Header extends React.Component {
                     <img src={logo} alt=''></img>
                 </Link>
                 <Navigation />
+                <div className="hamburger-login" onClick={this.showLogin}>>LOG-REG></div>
                 <Login />
             </div>
         )

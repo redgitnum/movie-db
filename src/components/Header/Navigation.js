@@ -16,9 +16,58 @@ class Navigation extends React.Component {
         }
     }
 
+    showHamburger = (e) => {
+        e.target.nextSibling.classList.toggle('show')
+    }
+
     render() {
         return(
             <div className="nav">
+                <div className="hamburger-menu">
+                    <div className="hamburger-icon" onClick={this.showHamburger}></div>
+                    <ul className="hamburger-list">
+                        <li className="hamburger-item">
+                            <div className="hamburger-title">
+                                <img alt="ufo" src={ufo}></img>
+                                <div>DISCOVER</div>
+                            </div>
+                            <ul className="hamburger-expand">  
+                                <li><Link to="/discover/movie/1">MOVIES</Link></li>
+                                <li><Link to="/discover/tv/1">TV SHOWS</Link></li>
+                            </ul>
+                        </li>
+                        <li className="hamburger-item">
+                            <div className="hamburger-title">
+                                <img alt="ufo" src={camera}></img>
+                                <div>MOVIES</div>
+                            </div>
+                            <ul className="hamburger-expand">  
+                                <li><Link to="/movies/popular/1">POPULAR</Link></li>
+                                <li><Link to="/movies/top_rated/1">TOP RATED</Link></li>
+                                <li><Link to="/movies/upcoming/1">UPCOMING</Link></li>
+                                <li><Link to="/movies/now_playing/1">NOW PLAYING</Link></li>
+                            </ul>
+                        </li>
+                        <li className="hamburger-item">
+                            <div className="hamburger-title">
+                                <img alt="ufo" src={tv}></img>
+                                <div>TV SHOWS</div>
+                            </div>
+                            <ul className="hamburger-expand">  
+                                <li><Link to="/tvshows/popular/1">POPULAR</Link></li>
+                                <li><Link to="/tvshows/top_rated/1">TOP RATED</Link></li>
+                                <li><Link to="/tvshows/on_the_air/1">ON THE AIR</Link></li>
+                                <li> <Link to="/tvshows/airing_today/1">AIRING TODAY</Link></li>
+                            </ul>
+                        </li>
+                        <li className="hamburger-item">
+                            <Link to="/people/1" className="hamburger-title">
+                                <img alt="ufo" src={star}></img>
+                                <div>PEOPLE</div>
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
                 <ul className="navbar">
                     <li>
                         <div className="nav-container">

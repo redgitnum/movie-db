@@ -21,8 +21,17 @@ class Basic extends React.Component {
     state = {modalVisibility: ''}
 
     showModal = (e) => {
-        this.setState({modalVisibility: e.target.parentNode.attributes.name.value})
-        document.body.style.overflow = 'hidden'
+        if(this.props.user.username === 'demo1'){
+            alert('Create your own account to use this option.')
+        }
+        else if(!this.props.user){
+            alert('Log in to use this option')
+        }
+        else {
+            this.setState({modalVisibility: e.target.parentNode.attributes.name.value})
+            document.body.style.overflow = 'hidden'
+        }
+
     }
 
     hideModal = (e) => {

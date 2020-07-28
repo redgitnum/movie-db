@@ -11,15 +11,27 @@ class Login extends React.Component {
 
     logOut = () => {
         axios.post('/user/logout')
-        .then(res => {
+        .then(() => {
             localStorage.clear()
             this.setState({logged: false})
             window.location.reload(false)
         })
     }
+
+    loading = () => {
+        if(!this.state.logged){
+            return (
+            <div className='loading-screen'>
+                <div className='placeholder-login'></div>
+            </div>
+            )
+        }
+    }
+
     render() {
         return(
             <div className="login">
+                {this.loading()}
                 {!this.state.logged && <Redirect to='/' />}
                 {this.props.user.username ? 
                     <div className="links">
