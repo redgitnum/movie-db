@@ -2,10 +2,11 @@ import { put, takeLatest } from 'redux-saga/effects';
 import { FETCH_USER, RETURN_USER } from '../../actions/actionTypes';
 import axios from 'axios';
 import qs from 'qs';
+const API = 'https://flicks-db.herokuapp.com'
 
 
 export function* fetchUser(action) {
-    const result = yield axios.post('/user/login', qs.stringify({
+    const result = yield axios.post(`${API}/user/login`, qs.stringify({
         username: action.payload.username,
         password: action.payload.password
     })).then(res => {

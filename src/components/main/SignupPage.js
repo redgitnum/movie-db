@@ -6,6 +6,7 @@ import bcrypt from 'bcryptjs'
 import axios from 'axios';
 import qs from 'qs';
 
+const API = 'https://flicks-db.herokuapp.com'
 const mapStateToProps = state => state;
 
 
@@ -22,7 +23,7 @@ class SignupPage extends React.Component {
         let username = e.target.username.value
         if(e.target.password.value === e.target.confirm_password.value){
             let hashedPassword = await bcrypt.hash(e.target.password.value, 10);
-            await axios.post('/user/register', qs.stringify({
+            await axios.post(`${API}/user/register`, qs.stringify({
                 username: username,
                 password: hashedPassword
             })).then(response => {

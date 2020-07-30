@@ -10,6 +10,7 @@ import { fetchUser } from '../../../../actions';
 import axios from 'axios';
 import qs from 'qs';
 
+const API = 'https://flicks-db.herokuapp.com'
 const mapStateToProps = state => state;
 const mapDispatchToProps = {
     fetchUser
@@ -46,7 +47,7 @@ class Basic extends React.Component {
         let dataType = e.target.id
         let data = (e.target.rating && e.target.rating.value) || (e.target.review && e.target.review.value) || (e.target.watchlist && true)
         let entryType = this.props.details.entry.release_date ? 'movie': 'tv'
-        axios.post('/user/update/records', qs.stringify({
+        axios.post(`${API}/user/update/records`, qs.stringify({
             mediaId: this.props.details.entry.id,
             thumbnailImage: this.props.details.entry.poster_path,
             title: this.props.details.entry.name || this.props.details.entry.title,

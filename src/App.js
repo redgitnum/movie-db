@@ -18,7 +18,7 @@ import PeopleDetails from './components/main/Details/PeopleDetails';
 import AccountPage from './components/main/AccountPage';
 
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route
 } from "react-router-dom";

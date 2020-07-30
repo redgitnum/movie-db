@@ -4,6 +4,7 @@ import { resetStore } from '../../actions';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import qs from 'qs';
+const API = 'https://flicks-db.herokuapp.com'
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = {
@@ -14,7 +15,7 @@ const mapDispatchToProps = {
 class AccountPage extends React.Component {
     updatePassword = async (e) => {
         e.preventDefault()
-        await axios.post('/user/update', qs.stringify({
+        await axios.post(`${API}/user/update`, qs.stringify({
             username: this.props.user.username, 
             password: e.target.password.value, 
             new_password: e.target.new_password.value}))

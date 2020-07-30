@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+const API = 'https://flicks-db.herokuapp.com'
 const mapStateToProps = state => state;
 
 
@@ -10,7 +11,7 @@ class Login extends React.Component {
     state = {logged: true}
 
     logOut = () => {
-        axios.post('/user/logout')
+        axios.post(`${API}/user/logout`)
         .then(() => {
             localStorage.clear()
             this.setState({logged: false})

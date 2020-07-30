@@ -1799,6 +1799,7 @@ button[type=submit]:hover {
         background: var(--bg-dark);
         color: var(--text-gray);
         font-size: 0.9em;
+        text-overflow: ellipsis;
     }
 
     .hamburger-login{
