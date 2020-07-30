@@ -1800,6 +1800,8 @@ button[type=submit]:hover {
         color: var(--text-gray);
         font-size: 0.9em;
         text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
 
     .hamburger-login{
