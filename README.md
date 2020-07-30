@@ -3,10 +3,6 @@
 
 **App works thanks to the https://www.themoviedb.org/ API.**
 
-The plan is to make the app as close functional as the original.
-At the end I will probably add simple login system to make
-watchlists, add favourites, rate entries (and maybe more if something comes to mind)
-
 ## About
 - App created to mimic some functionality of movie Databases that are found on the web
 - Frontend build with react 
@@ -24,4 +20,4 @@ watchlists, add favourites, rate entries (and maybe more if something comes to m
 	- Rate, review, add to watchlist - every movie and tv show can be rated, reviewed or added to watchlist on entry details page, it is not possible to use these features on demo account and you cannot add a record twice for the same entry (like rating twice the same movie)
 	- Account page - after you are logged in you can check all your data on the account page, all data is separated into different categories for easier understanding of the data, you can also change your password 
 
-
+note: logging in may take more than a couple of seconds due to using free services for backend
